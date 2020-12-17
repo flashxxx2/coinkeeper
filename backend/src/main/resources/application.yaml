@@ -1,0 +1,25 @@
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/baseChangelog.xml
+  datasource:
+    url: jdbc:postgresql://localhost:5432/payment
+    username: postgres
+    password: postgres
+    initialization-mode: always
+    platform: postgres
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      show-sql: true
+      ddl-auto: none
+server:
+  port: 8081
+
+
+
+
+
+
+

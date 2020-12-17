@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<simple-page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
+             name="Сервис сбора статистики по платежам">
+    <table query-id="payments">
+        <columns>
+            <column text-field-id="id" label="№"/>
+            <column text-field-id="createdTime" label="Дата создания"/>
+            <column text-field-id="sum" label="Сумма"/>
+            <column text-field-id="commission" label="Комиссия"/>
+            <column text-field-id="status.name" label="Статус"/>
+        </columns>
+
+        <filters>
+            <row>
+                <date-interval label="Введите интервал дат" date-format="DD/MM/YYYY" utc="true" id="interval"/>
+                <select query-id="statuses" id="status" label="Выберите статус">
+                </select>
+            </row>
+        </filters>
+
+        <toolbar place="topRight">
+            <button id="delete" label="Удалить платеж">
+                <invoke operation-id="delete"/>
+            </button>
+        </toolbar>
+    </table>
+</simple-page>
