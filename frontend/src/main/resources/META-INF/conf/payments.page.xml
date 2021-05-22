@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<simple-page xmlns="http://n2oapp.net/framework/config/schema/page-3.0">
+    <form query-id="payment">
+        <fields>
+            <input-money id="sum" label="Сумма расхода" required="true"/>
+            <select query-id="category" id="category" label="Выберите категорию расходов" required="true">
+            </select>
+            <text-area id="comment" label="Комментарий к расходу"/>
+        </fields>
+    </form>
+</simple-page>

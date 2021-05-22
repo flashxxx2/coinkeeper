@@ -4,8 +4,8 @@ package payments.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
-import payments.dto.StatusDto;
 import payments.service.PaymentService;
 
 import java.time.LocalDateTime;
@@ -29,18 +29,15 @@ public class PaymentController {
     }
 
     @GetMapping
-    public List<PaymentDto> findAll(@RequestParam(required = false) Long statusId,
-                                       @RequestParam(required = false)
-                                       @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                                               LocalDateTime after,
-                                       @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                                       @RequestParam(required = false)
-                                               LocalDateTime before) {
-        return paymentService.findByFilter(statusId, after, before);
+    public List<PaymentDto> findAll(@RequestParam(required = false) Long categoryId,
+                                    @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime after,
+                                    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                                    @RequestParam(required = false) LocalDateTime before) {
+        return paymentService.findByFilter(categoryId, after, before);
     }
 
-    @GetMapping("/statuses")
-    public List<StatusDto> getStatuses() {
-        return paymentService.getStatuses();
+    @GetMapping("/category")
+    public List<CategoryDto> getCategory() {
+        return paymentService.getCategory();
     }
 }

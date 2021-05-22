@@ -6,8 +6,9 @@ import payments.models.PaymentEntity;
 import java.time.LocalDateTime;
 
 public class PaymentSpecification {
-    public static Specification<PaymentEntity> paymentByStatus(final Long statusId) {
-        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("statusEntity").get("id"), statusId);
+
+    public static Specification<PaymentEntity> paymentByCategory(final Long categoryId) {
+        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("categoryEntity").get("id"), categoryId);
     }
 
     public static Specification<PaymentEntity> paymentCreateBefore(final LocalDateTime before) {
@@ -22,10 +23,10 @@ public class PaymentSpecification {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.and();
     }
 
-    public static Specification<PaymentEntity> getPaymentCriteria(Long statusId, LocalDateTime after, LocalDateTime before) {
+    public static Specification<PaymentEntity> getPaymentCriteria(Long categoryId, LocalDateTime after, LocalDateTime before) {
         Specification<PaymentEntity> where = trueSpecification();
-        if (statusId != null) {
-            where = where.and(paymentByStatus(statusId));
+        if (categoryId != null) {
+            where = where.and(paymentByCategory(categoryId));
         }
         if (after != null) {
             where = where.and(paymentCreateAfter(after));

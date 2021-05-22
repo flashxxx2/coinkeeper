@@ -20,15 +20,16 @@ public class PaymentEntity {
     private LocalDateTime createdTime;
 
     @JsonProperty
+    @Column
+    private String comment;
+
+    @JsonProperty
     @Column(precision = 12, scale = 2)
     private BigDecimal sum;
 
     @JsonProperty
-    @Column(precision = 12, scale = 2)
-    private BigDecimal commission;
-
-    @JsonProperty
     @ManyToOne
-    @JoinColumn(name = "status_id")
-    private StatusEntity statusEntity;
+    @JoinColumn(name = "category_id")
+    private CategoryEntity categoryEntity;
+
 }

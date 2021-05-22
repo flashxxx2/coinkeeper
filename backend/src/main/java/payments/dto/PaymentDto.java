@@ -16,6 +16,6 @@ public class PaymentDto {
     private Long id;
     private LocalDateTime createdTime;
     private BigDecimal sum;
-    private BigDecimal commission;
-    private StatusDto status;
+    private CategoryDto category;
+    private String comment;
 }

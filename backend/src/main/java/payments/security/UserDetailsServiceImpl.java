@@ -22,11 +22,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = repository.findByUsername(username);
-
         if(user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-
         List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("user"));
 
         return new User(user.getUsername(), user.getPassword(), authorities);

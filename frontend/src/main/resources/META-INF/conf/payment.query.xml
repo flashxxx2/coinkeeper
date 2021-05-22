@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-4.0"
+       object-id="payment">
+
+    <list>
+        <rest>/payments?{filters}</rest>
+    </list>
+    <unique>
+        <rest>/payments/{id}</rest>
+    </unique>
+
+    <fields>
+
+        <field id="sum" domain="integer">
+            <select/>
+        </field>
+
+        <field id="comment" domain="string">
+            <select/>
+        </field>
+
+
+        <field id="category" domain="object">
+            <select/>
+        </field>
+    </fields>
+</query>

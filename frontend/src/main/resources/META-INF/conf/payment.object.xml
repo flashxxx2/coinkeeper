@@ -16,8 +16,9 @@
                 <rest method="POST">/payments/</rest>
             </invocation>
             <in>
-                <field id="name"/>
+                <field id="sum"/>
                 <field id="category"/>
+                <field id="comment"/>
             </in>
             <out>
                 <field id="id"/>

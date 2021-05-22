@@ -4,10 +4,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Table(name = "payment_statuses")
 @Entity
 @Data
-public class StatusEntity {
+@Table(name = "payment_category")
+public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

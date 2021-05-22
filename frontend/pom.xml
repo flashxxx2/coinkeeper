@@ -16,7 +16,7 @@
     </parent>
 
     <properties>
-        <n2o.version>7.11.0</n2o.version>
+        <n2o.version>7.12.15</n2o.version>
         <spring-version>5.2.8.RELEASE</spring-version>
     </properties>
 

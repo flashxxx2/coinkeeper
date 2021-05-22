@@ -14,12 +14,6 @@
             <select/>
         </field>
 
-        <field id="status" domain="object">
-            <select/>
-            <filters>
-                <eq domain="integer" filter-id="status.id">statusId={status.id}</eq>
-            </filters>
-        </field>
         <field id="createdTime" domain="localdatetime">
             <select/>
             <filters>
@@ -33,8 +27,11 @@
             <select/>
         </field>
 
-        <field id="commission" domain="integer">
+        <field id="category" domain="object">
             <select/>
+            <filters>
+                <eq domain="integer" filter-id="category.id">categoryId={category.id}</eq>
+            </filters>
         </field>
     </fields>
 </query>
