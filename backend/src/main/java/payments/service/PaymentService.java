@@ -3,6 +3,7 @@ package payments.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
 import payments.mapper.Mapper;
@@ -24,6 +25,7 @@ public class PaymentService {
     private final PaymentRepository paymentRepository;
     private final CategoryRepository categoryRepository;
 
+    @Transactional
     public void savePayment(PaymentDto paymentDto) {
         PaymentEntity paymentEntity = toEntity(paymentDto);
         paymentRepository.save(paymentEntity);

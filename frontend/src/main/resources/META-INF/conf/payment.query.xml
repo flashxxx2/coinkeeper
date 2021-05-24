@@ -19,7 +19,6 @@
             <select/>
         </field>
 
-
         <field id="category" domain="object">
             <select/>
         </field>

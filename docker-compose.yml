@@ -2,7 +2,7 @@ version: '3.7'
 services:
   backend:
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/db
       SPRING_DATASOURCE_USERNAME: app
       SPRING_DATASOURCE_PASSWORD: pass
     build:

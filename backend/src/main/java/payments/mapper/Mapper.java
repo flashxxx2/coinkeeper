@@ -5,13 +5,15 @@ import payments.dto.PaymentDto;
 import payments.models.CategoryEntity;
 import payments.models.PaymentEntity;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 public class Mapper {
     public static PaymentEntity toEntity(PaymentDto paymentDto) {
         PaymentEntity paymentEntity = new PaymentEntity();
         paymentEntity.setSum(paymentDto.getSum());
-        paymentEntity.setCreatedTime(paymentDto.getCreatedTime());
+        paymentEntity.setCreatedTime(LocalDateTime.now());
         paymentEntity.setCategoryEntity(toEntityCategory(paymentDto.getCategory()));
-        paymentEntity.setId(paymentDto.getId());
         paymentEntity.setComment(paymentDto.getComment());
         return paymentEntity;
     }
