@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static payments.mapper.Mapper.toEntity;
+import static payments.mapper.Mapper.*;
 import static payments.repository.PaymentSpecification.getPaymentCriteria;
 
 @Service
@@ -26,9 +26,9 @@ public class PaymentService {
     private final CategoryRepository categoryRepository;
 
     @Transactional
-    public void savePayment(PaymentDto paymentDto) {
+    public PaymentDto savePayment(PaymentDto paymentDto) {
         PaymentEntity paymentEntity = toEntity(paymentDto);
-        paymentRepository.save(paymentEntity);
+        return toDto(paymentRepository.save(paymentEntity));
     }
 
     public void deletePayment(Long id) {
@@ -47,5 +47,20 @@ public class PaymentService {
                 .stream()
                 .map(Mapper::toDtoCategory)
                 .collect(Collectors.toList());
+    }
+
+    public PaymentDto updatePayment(PaymentDto paymentDto) {
+        PaymentEntity entity = new PaymentEntity();
+        entity.setId(paymentDto.getId());
+        entity.setCreatedTime(LocalDateTime.now());
+        entity.setSum(paymentDto.getSum());
+        entity.setComment(paymentDto.getComment());
+        entity.setCategoryEntity(toEntityCategory(paymentDto.getCategory()));
+
+        return toDto(paymentRepository.save(entity));
+    }
+
+    public PaymentDto getPaymentById(Long id) {
+        return toDto(paymentRepository.getOne(id));
     }
 }

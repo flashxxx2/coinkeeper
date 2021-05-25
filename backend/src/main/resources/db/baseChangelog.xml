@@ -6,4 +6,7 @@
 
     <includeAll path="classpath*:/db/changelog" errorIfMissingOrEmpty="true"/>
 
+<!--    <include file="patches/1.1.4/changelog.xml"-->
+<!--             relativeToChangelogFile="true"/>-->
+
 </databaseChangeLog>

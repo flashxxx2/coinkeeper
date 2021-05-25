@@ -10,7 +10,7 @@ CREATE TABLE payment_category (
 
 CREATE TABLE payment_statistic (
                                    id BIGSERIAL NOT NULL,
-                                   created_dt timestamp without time zone NOT NULL,
+                                   created_dt timestamp with time zone default current_timestamp,
                                    sum numeric(12,2) NOT NULL,
                                    category_id bigint NOT NULL,
                                    comment varchar,

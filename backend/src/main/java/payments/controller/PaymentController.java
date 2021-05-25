@@ -19,8 +19,13 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping
-    public void savePayment(@RequestBody PaymentDto paymentDto) {
-        paymentService.savePayment(paymentDto);
+    public PaymentDto savePayment(@RequestBody PaymentDto paymentDto) {
+        return paymentService.savePayment(paymentDto);
+    }
+
+    @PutMapping("/{id}")
+    public PaymentDto changePayment(@RequestBody PaymentDto paymentDto) {
+        return paymentService.updatePayment(paymentDto);
     }
 
     @DeleteMapping("/{id}")
@@ -34,6 +39,11 @@ public class PaymentController {
                                     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
                                     @RequestParam(required = false) LocalDateTime before) {
         return paymentService.findByFilter(categoryId, after, before);
+    }
+
+    @GetMapping("/{id}")
+    public PaymentDto getById(@PathVariable("id") Long id) {
+        return paymentService.getPaymentById(id);
     }
 
     @GetMapping("/category")

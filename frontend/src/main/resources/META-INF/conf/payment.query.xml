@@ -10,6 +10,12 @@
     </unique>
 
     <fields>
+        <field id="id" domain="long">
+            <select mapping="['id']"/>
+            <filters>
+                <eq filter-id="id"/>
+            </filters>
+        </field>
 
         <field id="sum" domain="integer">
             <select/>
@@ -22,5 +28,9 @@
         <field id="category" domain="object">
             <select/>
         </field>
+
+<!--        <field id="createdTime" domain="localdatetime">-->
+<!--            <select/>-->
+<!--        </field>-->
     </fields>
 </query>

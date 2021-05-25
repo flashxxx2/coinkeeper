@@ -18,7 +18,7 @@ public class Mapper {
         return paymentEntity;
     }
 
-    private static CategoryEntity toEntityCategory(CategoryDto category) {
+    public static CategoryEntity toEntityCategory(CategoryDto category) {
 
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity.setId(category.getId());

@@ -1,40 +1,31 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<object xmlns="http://n2oapp.net/framework/config/schema/object-4.0">
+<object xmlns="http://n2oapp.net/framework/config/schema/object-3.0">
     <operations>
-
-        <operation id="delete" name="Удалить" success-text="Данные о товаре удалены">
-            <invocation>
-                <rest method="DELETE">/payments/{id}</rest>
-            </invocation>
-            <in>
-                <field id="id"/>
-            </in>
-        </operation>
 
         <operation id="create" name="Добавить" success-text="Расход успешно добавлен">
             <invocation>
                 <rest method="POST">/payments/</rest>
             </invocation>
-            <in>
-                <field id="sum"/>
-                <field id="category"/>
-                <field id="comment"/>
-            </in>
-            <out>
-                <field id="id"/>
-            </out>
+            <in-parameters>
+                <param id="sum"/>
+                <param id="category"/>
+                <param id="comment"/>
+            </in-parameters>
+            <out-parameters>
+                <param id="id"/>
+            </out-parameters>
         </operation>
 
         <operation id="update" name="Изменить" success-text="Данные о расходе изменены">
             <invocation>
                 <rest method="PUT">/payments/{id}</rest>
             </invocation>
-            <in>
-                <field id="id"/>
-                <field id="name"/>
-                <field id="price"/>
-            </in>
+            <in-parameters>
+                <param id="id"/>
+                <param id="sum"/>
+                <param id="category"/>
+                <param id="comment"/>
+            </in-parameters>
         </operation>
-
     </operations>
 </object>
