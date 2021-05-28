@@ -11,6 +11,8 @@
                 </actions>
                 <toolbar place="topRight">
                     <button id="analitics" label="Аналитика" color="danger">
+                        <open-page page-id="analitics" master-field-id="id" detail-field-id="id" page-name="Аналитика"
+                                   route="/analitics"/>
                     </button>
                 </toolbar>
                 <columns>

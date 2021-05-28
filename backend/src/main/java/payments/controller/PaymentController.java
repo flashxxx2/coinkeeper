@@ -9,7 +9,7 @@ import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
 import payments.service.PaymentService;
 
-import javax.ws.rs.BeanParam;
+import javax.ws.rs.*;
 import java.util.List;
 
 @RestController
@@ -36,7 +36,7 @@ public class PaymentController {
 
     @GetMapping
     public Page<PaymentDto> findAll(@BeanParam PaymentCriteria criteria) {
-        return paymentService.findByFilter(criteria);
+        return paymentService.findPayments(criteria);
     }
 
     @GetMapping("/{id}")

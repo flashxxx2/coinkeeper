@@ -41,54 +41,10 @@ public class PaymentService {
     }
 
     @Transactional
-    public Page<PaymentDto> findByFilter(PaymentCriteria criteria) {
-        PageRequest page = PageRequest.of(criteria.getPageNumber(), criteria.getPageSize(), criteria.getSort());
-
-        PaymentSpecification spec = new PaymentSpecification(criteria);
-
-        final AtomicInteger counter = new AtomicInteger();
-
-        List<PaymentDto> list = paymentRepository
-                .findAll(spec, criteria.getSort())
-                .stream()
-                .map(Mapper::toDto)
-                .collect(Collectors.toList());
-
-        Optional<Sort.Order> categoryOrder = criteria.getSort().stream()
-                .filter(order -> order.getProperty().equals("categoryId"))
-                .findAny();
-
-        int totalElements = list.size() - counter.get();
-
-        //Сортируем по наименованию категории
-        return categoryOrder.map(order -> sortApplicationPageByCategory(
-                order,
-                list,
-                page,
-                totalElements
-        )).orElse(new PageImpl<>(list, page, totalElements));
-    }
-
-    private Page<PaymentDto> sortApplicationPageByCategory(
-            Sort.Order order,
-            List<PaymentDto> list,
-            Pageable pageable,
-            long size
-    ) {
-        List<PaymentDto> resultList;
-        if (order.isAscending()) {
-            resultList = list.stream()
-                    .sorted(Comparator.comparing(o -> o.getCategory().getName()))
-                    .collect(Collectors.toList());
-        } else {
-            resultList = list.stream()
-                    .sorted((o1, o2) -> o2
-                            .getCategory().getName()
-                            .compareTo(o1.getCategory().getName())
-                    )
-                    .collect(Collectors.toList());
-        }
-        return new PageImpl<>(resultList, pageable, size);
+    public Page<PaymentDto> findPayments(PaymentCriteria criteria) {
+        return paymentRepository
+                .findAll(new PaymentSpecification(criteria), PageRequest.of(criteria.getPageNumber(), criteria.getPageSize(), criteria.getSort()))
+                .map(Mapper::toDto);
     }
 
     public List<CategoryDto> getCategory() {
