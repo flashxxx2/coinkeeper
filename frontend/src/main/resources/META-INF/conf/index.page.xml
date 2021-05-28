@@ -15,7 +15,9 @@
                 </toolbar>
                 <columns>
                     <column text-field-id="id" label="№"/>
-                    <column text-field-id="createdTime" label="Дата расхода" sorting-direction="desc"/>
+                    <column text-field-id="createdTime" label="Дата расхода">
+                        <text format="date DD.MM.YYYY"/>
+                    </column>
                     <column text-field-id="sum" label="Сумма расхода(руб)">руб</column>
                     <column text-field-id="category.name" label="Категория"/>
                 </columns>
@@ -25,7 +27,7 @@
 
                 <filters>
                     <row>
-                        <date-interval label="Введите интервал дат" date-format="DD/MM/YYYY" utc="true" id="interval"/>
+                        <date-interval id="createdTime" label="Введите интервал дат"/>
                         <select query-id="category" id="category" label="Выберите категорию расходов"/>
                     </row>
                 </filters>

@@ -13,7 +13,7 @@ public class Mapper {
         PaymentEntity paymentEntity = new PaymentEntity();
         paymentEntity.setSum(paymentDto.getSum());
         paymentEntity.setCreatedTime(LocalDateTime.now());
-        paymentEntity.setCategoryEntity(toEntityCategory(paymentDto.getCategory()));
+        paymentEntity.setCategory(toEntityCategory(paymentDto.getCategory()));
         paymentEntity.setComment(paymentDto.getComment());
         return paymentEntity;
     }
@@ -30,7 +30,7 @@ public class Mapper {
         PaymentDto paymentDto = new PaymentDto();
         paymentDto.setSum(paymentEntity.getSum());
         paymentDto.setCreatedTime(paymentEntity.getCreatedTime());
-        paymentDto.setCategory(toDtoCategory(paymentEntity.getCategoryEntity()));
+        paymentDto.setCategory(toDtoCategory(paymentEntity.getCategory()));
         paymentDto.setId(paymentEntity.getId());
         paymentDto.setComment(paymentEntity.getComment());
         return paymentDto;

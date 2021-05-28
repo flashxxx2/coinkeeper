@@ -30,6 +30,6 @@ public class PaymentEntity {
     @JsonProperty
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private CategoryEntity categoryEntity;
+    private CategoryEntity category;
 
 }

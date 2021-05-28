@@ -2,13 +2,14 @@ package payments.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import payments.criteria.PaymentCriteria;
 import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
 import payments.service.PaymentService;
 
-import java.time.LocalDateTime;
+import javax.ws.rs.BeanParam;
 import java.util.List;
 
 @RestController
@@ -34,11 +35,8 @@ public class PaymentController {
     }
 
     @GetMapping
-    public List<PaymentDto> findAll(@RequestParam(required = false) Long categoryId,
-                                    @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime after,
-                                    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                                    @RequestParam(required = false) LocalDateTime before) {
-        return paymentService.findByFilter(categoryId, after, before);
+    public Page<PaymentDto> findAll(@BeanParam PaymentCriteria criteria) {
+        return paymentService.findByFilter(criteria);
     }
 
     @GetMapping("/{id}")
