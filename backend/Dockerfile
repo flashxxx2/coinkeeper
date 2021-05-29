@@ -1,4 +1,3 @@
-FROM openjdk:8-jdk
-RUN apt update
-ENTRYPOINT ["java","-Dfile.encoding=UTF-8","-Dsun.jnu.encoding=UTF-8","-jar","app.jar"]
-EXPOSE 8080
+FROM openjdk:14
+COPY . .
+ENTRYPOINT ["java","-Dfile.encoding=UTF-8","-Dsun.jnu.encoding=UTF-8","-jar","target/backend-1.0-jar-with-dependencies.jar"]

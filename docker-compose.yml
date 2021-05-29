@@ -8,18 +8,18 @@ services:
     build:
       context: backend
       args:
-        JAR_FILE: target/backend-1.0-SNAPSHOT.jar
+        JAR_FILE: backend/target/backend-1.0.jar
     ports:
       - 8081:8081
     depends_on:
-      - postgres
+      - db
   frontend:
     environment:
       N2O_ENGINE_REST_URL: http://backend:8081
     build:
       context: frontend
       args:
-        JAR_FILE: target/frontend-1.0-SNAPSHOT.jar
+        JAR_FILE: frontend/target/frontend-1.0-jar-with-dependencies.jar
     ports:
       - 8080:8080
   db:

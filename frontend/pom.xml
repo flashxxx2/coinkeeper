@@ -32,8 +32,8 @@
             <version>${n2o.version}</version>
         </dependency>
 
-    </dependencies>
 
+    </dependencies>
     <build>
         <plugins>
             <plugin>
