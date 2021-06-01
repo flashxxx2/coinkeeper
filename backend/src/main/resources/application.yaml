@@ -1,3 +1,6 @@
+app:
+  upload:
+    dir: "media/"
 spring:
   liquibase:
     enabled: true

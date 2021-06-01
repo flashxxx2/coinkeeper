@@ -1,11 +1,15 @@
-package payments.models;
+package payments.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import payments.dto.MediaUploadDto;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Table(name = "payment_statistic")
 @Entity
@@ -31,5 +35,10 @@ public class PaymentEntity {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
+
+    @ToString.Exclude
+    @JsonProperty
+    @OneToOne(mappedBy="paymentEntity")
+    private MediaUploadEntity mediaUploadEntity;
 
 }

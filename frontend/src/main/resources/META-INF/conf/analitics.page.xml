@@ -1,16 +1,32 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<page xmlns="http://n2oapp.net/framework/config/schema/page-2.0"
+<page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
       name="Сервис контролирования расходов">
     <regions>
-        <region place="single">
-            <table id="analitics" query-id="analitics" name="Мои операции">
-                <filters>
-                    <row>
-                        <date-interval id="createdTime" label="Введите интервал дат"/>
-                        <select query-id="category" id="category" label="Выберите категорию расходов"/>
-                    </row>
-                </filters>
-            </table>
+        <region>
+            <form query-id="analitics">
+                <fields>
+                    <line label="Баланс">
+                        <input-text id="balance" label="Текущий баланс">
+
+                        </input-text>
+                        <text id="balanceText" no-label="true">Изменить</text>
+                        <checkbox id="changeBalanceEnabled" src="Switch" label="Получать уведомления"
+                                  style="margin-top: -20px;"/>
+                    </line>
+                    <line label="Информация о балансе">
+                        <input-text id="consumption" label="Ваш плановый расход на текущий месяц:">Ваш плановый расход на текущий месяц составляет:</input-text>
+                        <text id="consumptionText" no-label="true">Изменить</text>
+                        <checkbox id="changeConsumptionEnabled" src="Switch" label="Получать уведомления"
+                                  style="margin-top: -20px;"/>
+                        <text id="anoSign">Ваш фактический расход на текущий месяц:</text>
+                    </line>
+                    <line label="Данные о расходах">
+                        <text id="id2">Самая дорогая покупка в этом месяце:</text>
+                        <text id="anoSign2">Наибольший расход в этом месяце по категории:</text>
+                        <text id="partnerSign2"></text>
+                    </line>
+                </fields>
+            </form>
         </region>
     </regions>
 </page>

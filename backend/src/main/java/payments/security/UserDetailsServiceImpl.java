@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import payments.models.UserEntity;
+import payments.entity.UserEntity;
 import payments.repository.UsersRepository;
 
 import java.util.Collections;

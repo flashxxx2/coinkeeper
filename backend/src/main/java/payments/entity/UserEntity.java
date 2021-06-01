@@ -1,15 +1,17 @@
-package payments.models;
+package payments.entity;
 
 import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity
 @Data
-@Table(name = "payment_category")
-public class CategoryEntity {
+@Entity
+@Table(name = "users")
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+
+    public String username;
+    public String password;
 }

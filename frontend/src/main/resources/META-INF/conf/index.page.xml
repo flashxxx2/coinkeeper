@@ -3,7 +3,7 @@
       name="Сервис контролирования расходов">
     <regions>
         <region place="single">
-            <table id="payments" query-id="payments" name="Мои операции">
+            <table id="payments" query-id="payments" name="Мои операции" >
                 <actions>
                     <action id="view">
                         <open-page page-id="payments_view" master-field-id="id" detail-field-id="id"/>

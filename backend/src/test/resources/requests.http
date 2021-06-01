@@ -1,0 +1,16 @@
+###
+POST http://localhost:8081/media/upload/photo
+Authorization: Basic user pass
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="../image.jpg"
+Content-Type: image/jpeg
+
+< ./lich.jpg
+--WebAppBoundary--
+
+###
+GET http://localhost:8081/media/image/02a42d4c-9cea-4bec-bf88-170cfaa5ac80
+Authorization: Basic user pass
+Content-Type: image/jpeg

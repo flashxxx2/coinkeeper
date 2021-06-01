@@ -35,17 +35,17 @@ public class PaymentController {
     }
 
     @GetMapping
-    public Page<PaymentDto> findAll(@BeanParam PaymentCriteria criteria) {
+    public Page<PaymentDto> getAllPayments(@BeanParam PaymentCriteria criteria) {
         return paymentService.findPayments(criteria);
     }
 
     @GetMapping("/{id}")
-    public PaymentDto getById(@PathVariable("id") Long id) {
+    public PaymentDto getPayment(@PathVariable("id") Long id) {
         return paymentService.getPaymentById(id);
     }
 
     @GetMapping("/category")
-    public List<CategoryDto> getCategory() {
+    public List<CategoryDto> getPaymentCategory() {
         return paymentService.getCategory();
     }
 }

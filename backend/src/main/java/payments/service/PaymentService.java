@@ -9,16 +9,13 @@ import payments.criteria.PaymentCriteria;
 import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
 import payments.mapper.Mapper;
-import payments.models.PaymentEntity;
+import payments.entity.PaymentEntity;
 import payments.repository.CategoryRepository;
 import payments.repository.PaymentRepository;
 import payments.repository.PaymentSpecification;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static payments.mapper.Mapper.*;

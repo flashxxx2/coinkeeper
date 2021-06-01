@@ -2,11 +2,10 @@ package payments.mapper;
 
 import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
-import payments.models.CategoryEntity;
-import payments.models.PaymentEntity;
+import payments.entity.CategoryEntity;
+import payments.entity.PaymentEntity;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 public class Mapper {
     public static PaymentEntity toEntity(PaymentDto paymentDto) {

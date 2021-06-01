@@ -3,7 +3,7 @@ package payments.repository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import payments.criteria.PaymentCriteria;
-import payments.models.PaymentEntity;
+import payments.entity.PaymentEntity;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
