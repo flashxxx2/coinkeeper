@@ -1,3 +1,7 @@
+server:
+  port: 7777
+  servlet:
+    context-path: /
 app:
   upload:
     dir: "media/"
@@ -17,8 +21,6 @@ spring:
     hibernate:
       show-sql: true
       ddl-auto: none
-server:
-  port: 8081
 
 
 

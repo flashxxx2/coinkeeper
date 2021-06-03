@@ -4,15 +4,14 @@ import lombok.*;
 
 import java.util.UUID;
 
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class MediaUploadDto {
+public class FileUploadDto {
 
-    private UUID id;
-    private String webPath;
-    private String name;
+    private Long id;
+    private String url;
+    private String fileName;
 }

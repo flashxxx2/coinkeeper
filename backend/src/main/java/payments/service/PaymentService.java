@@ -11,6 +11,7 @@ import payments.dto.PaymentDto;
 import payments.mapper.Mapper;
 import payments.entity.PaymentEntity;
 import payments.repository.CategoryRepository;
+import payments.repository.MediaRepository;
 import payments.repository.PaymentRepository;
 import payments.repository.PaymentSpecification;
 
@@ -26,11 +27,14 @@ public class PaymentService {
 
     private final PaymentRepository paymentRepository;
     private final CategoryRepository categoryRepository;
+    private final MediaRepository mediaRepository;
 
     @Transactional
     public PaymentDto savePayment(PaymentDto paymentDto) {
-        PaymentEntity paymentEntity = toEntity(paymentDto);
-        return toDto(paymentRepository.save(paymentEntity));
+        final var paymentEntity = toEntity(paymentDto);
+        mediaRepository.saveAll(paymentEntity.getPaymentFiles());
+        paymentRepository.save(paymentEntity);
+        return paymentDto;
     }
 
     public void deletePayment(Long id) {

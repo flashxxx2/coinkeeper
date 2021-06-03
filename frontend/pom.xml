@@ -16,9 +16,16 @@
     <properties>
         <n2o.version>7.12.15</n2o.version>
         <spring-version>5.2.8.RELEASE</spring-version>
+        <proxy.version>1.11</proxy.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.mitre.dsmiley.httpproxy</groupId>
+            <artifactId>smiley-http-proxy-servlet</artifactId>
+            <version>${proxy.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>net.n2oapp.framework</groupId>
@@ -31,7 +38,6 @@
             <artifactId>n2o-spring-boot-starter</artifactId>
             <version>${n2o.version}</version>
         </dependency>
-
 
     </dependencies>
     <build>

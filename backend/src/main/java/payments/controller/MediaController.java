@@ -1,35 +1,37 @@
 package payments.controller;
 
-import lombok.RequiredArgsConstructor;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.http.MediaType;
+import lombok.AllArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import payments.dto.MediaUploadDto;
-import payments.service.MediaService;
+import payments.models.FileModel;
+import payments.service.FilesService;
 
-import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RequestMapping("media")
 public class MediaController {
 
-    private final MediaService mediaService;
-    private final Log log = LogFactory.getLog(getClass());
+    private final FilesService filesService;
 
-
+    @CrossOrigin(origins = "*")
     @PostMapping("/upload/photo")
-    public MediaUploadDto downloadImage(@RequestParam MultipartFile file) {
-        log.debug(file.getOriginalFilename());
-        return mediaService.downloadImage(file);
+    public ResponseEntity<FileModel> downloadImage(@RequestParam("file") MultipartFile file) {
+        return filesService.uploadFile(file);
     }
 
-    @RequestMapping(value = "/image/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-    @ResponseBody
-    public byte[] uploadImage(@PathVariable UUID id) {
-        return mediaService.uploadImage(id);
+    @CrossOrigin(origins = "*")
+    @DeleteMapping("/{id}")
+    public void deleteFile(@PathVariable Integer id) {
+        filesService.deleteFile(id);
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/{fileName:.+}")
+    public ResponseEntity<Resource> downloadImage(@PathVariable String fileName, HttpServletRequest request) {
+        return filesService.downloadFile(fileName, request);
     }
 }

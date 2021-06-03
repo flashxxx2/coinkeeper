@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import payments.dto.MediaUploadDto;
+import payments.dto.FileUploadDto;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -36,9 +36,18 @@ public class PaymentEntity {
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @ToString.Exclude
     @JsonProperty
-    @OneToOne(mappedBy="paymentEntity")
-    private MediaUploadEntity mediaUploadEntity;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy="payment", fetch = FetchType.EAGER)
+    private List<FileUploadEntity> paymentFiles;
+
+
+
+
 
 }

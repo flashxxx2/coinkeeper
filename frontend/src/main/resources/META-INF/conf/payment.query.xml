@@ -29,8 +29,8 @@
             <select/>
         </field>
 
-<!--        <field id="createdTime" domain="localdatetime">-->
-<!--            <select/>-->
-<!--        </field>-->
+        <field id="fileUpload" domain="object">
+            <select/>
+        </field>
     </fields>
 </query>
