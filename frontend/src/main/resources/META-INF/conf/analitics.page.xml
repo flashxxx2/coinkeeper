@@ -6,24 +6,53 @@
             <form query-id="analitics">
                 <fields>
                     <line label="Баланс">
-                        <input-text id="balance" label="Текущий баланс">
-
-                        </input-text>
+                        <input-money id="balance" label="Текущий баланс">
+                            <dependencies>
+                                <enabling on="changeBalanceEnabled">
+                                    <![CDATA[
+                                        if ((typeof changeBalanceEnabled !== 'undefined' && changeBalanceEnabled !== false)
+                                        ) {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                    ]]>
+                                </enabling>
+                            </dependencies>
+                        </input-money>
                         <text id="balanceText" no-label="true">Изменить</text>
-                        <checkbox id="changeBalanceEnabled" src="Switch" label="Получать уведомления"
+                        <checkbox id="changeBalanceEnabled" src="Switch"
                                   style="margin-top: -20px;"/>
                     </line>
-                    <line label="Информация о балансе">
-                        <input-text id="consumption" label="Ваш плановый расход на текущий месяц:">Ваш плановый расход на текущий месяц составляет:</input-text>
+
+                    <line label="Информация о расходах">
+                        <input-money id="consumption" label="Ваш плановый расход на текущий месяц:">Ваш плановый расход на текущий месяц составляет:
+                            <dependencies>
+                                <enabling on="changeConsumptionEnabled">
+                                    <![CDATA[
+                                        if ((typeof changeConsumptionEnabled !== 'undefined' && changeConsumptionEnabled !== false)
+                                        ) {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                    ]]>
+                                </enabling>
+                            </dependencies>
+                        </input-money>
                         <text id="consumptionText" no-label="true">Изменить</text>
-                        <checkbox id="changeConsumptionEnabled" src="Switch" label="Получать уведомления"
+                        <checkbox id="changeConsumptionEnabled" src="Switch"
                                   style="margin-top: -20px;"/>
-                        <text id="anoSign">Ваш фактический расход на текущий месяц:</text>
+                        <text id="factConsumption">Ваш фактический расход на текущий месяц:${}</text>
                     </line>
-                    <line label="Данные о расходах">
-                        <text id="id2">Самая дорогая покупка в этом месяце:</text>
-                        <text id="anoSign2">Наибольший расход в этом месяце по категории:</text>
-                        <text id="partnerSign2"></text>
+
+
+                    <line label="Данные о покупках">
+                        <text id="expensivePurchase">Самая дорогая покупка в этом месяце:${}</text>
+
+
+
+                        <text id="consumptionCategory">Наибольший расход в этом месяце по категории:${}</text>
                     </line>
                 </fields>
             </form>
