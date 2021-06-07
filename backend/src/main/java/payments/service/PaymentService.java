@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import payments.criteria.PaymentCriteria;
 import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
+import payments.entity.FileUploadEntity;
 import payments.mapper.Mapper;
 import payments.entity.PaymentEntity;
 import payments.repository.CategoryRepository;
@@ -31,9 +32,13 @@ public class PaymentService {
 
     @Transactional
     public PaymentDto savePayment(PaymentDto paymentDto) {
-        final var paymentEntity = toEntity(paymentDto);
-        mediaRepository.saveAll(paymentEntity.getPaymentFiles());
+        var paymentEntity = toEntity(paymentDto);
         paymentRepository.save(paymentEntity);
+
+        List<FileUploadEntity> files = toEntityListFileUpload(paymentDto.getFileUpload()).stream()
+                .peek(file -> file.setPayment(paymentEntity))
+                .collect(Collectors.toList());
+        mediaRepository.saveAll(files);
         return paymentDto;
     }
 

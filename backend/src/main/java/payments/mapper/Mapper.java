@@ -19,13 +19,13 @@ public class Mapper {
         paymentEntity.setCreatedTime(LocalDateTime.now());
         paymentEntity.setCategory(toEntityCategory(paymentDto.getCategory()));
         paymentEntity.setComment(paymentDto.getComment());
-        paymentEntity.setPaymentFiles(toEntityListFileUpload(paymentDto.getFileUpload()));
+//        paymentEntity.setPaymentFiles(toEntityListFileUpload(paymentDto.getFileUpload()));
         return paymentEntity;
     }
 
     public static FileUploadEntity toEntityFileUpload(FileUploadDto fileUploadDto) {
         final var entity = new FileUploadEntity();
-        entity.setId(fileUploadDto.getId());
+//        entity.setId(fileUploadDto.getId());
         entity.setFileName(fileUploadDto.getFileName());
         entity.setUrl(fileUploadDto.getUrl());
         return entity;

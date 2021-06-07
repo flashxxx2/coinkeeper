@@ -14,3 +14,8 @@ Content-Type: image/jpeg
 GET http://localhost:8081/media/image/02a42d4c-9cea-4bec-bf88-170cfaa5ac80
 Authorization: Basic user pass
 Content-Type: image/jpeg
+
+
+###
+GET http://localhost:7777/media/lich.jpg
+Authorization: Basic user pass

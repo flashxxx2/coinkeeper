@@ -32,3 +32,10 @@ services:
       - POSTGRES_PASSWORD=pass
     volumes:
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+  gateway:
+    image: gateway
+    build: gateway
+    ports:
+      - 7777:80
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

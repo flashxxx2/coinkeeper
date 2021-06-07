@@ -69,13 +69,12 @@ public class MediaService {
 //    }
 //
 //    private FileModel getPaymentFile(UUID id) {
-//        MediaUploadEntity mediaEntity = mediaRepository.findById(id).orElseThrow(PaymentNotFoundExeption::new);
+//        MediaUploadEntity mediaEntity = mediaRepository.findById(id).orElseThrow(PaymentNotFoundException::new);
 //        return new FileModel(
 //                mediaEntity.getId(),
 //                mediaEntity.getWebPath(),
 //                mediaEntity.getName()
 //        );
 //    }
-
 
 }

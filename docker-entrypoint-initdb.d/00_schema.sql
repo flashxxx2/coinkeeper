@@ -1,16 +1,16 @@
-CREATE TABLE payment_category (
+CREATE TABLE IF NOT EXISTS payment_category (
                                   id BIGSERIAL NOT NULL,
                                   name character varying COLLATE pg_catalog."default" NOT NULL,
                                   CONSTRAINT payment_category_id_pk PRIMARY KEY (id));
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
                        id BIGSERIAL NOT NULL,
                        username varchar NOT NULL,
                        password varchar NOT NULL,
                        CONSTRAINT users_id_pk PRIMARY KEY (id)
 );
 
-CREATE TABLE payment_statistic (
+CREATE TABLE IF NOT EXISTS payment_statistic (
                                    id BIGSERIAL NOT NULL,
                                    created_dt timestamp without time zone NOT NULL,
                                    sum numeric(12,2) NOT NULL,
@@ -23,16 +23,20 @@ CREATE TABLE payment_statistic (
                                    ON UPDATE RESTRICT
                                    ON DELETE RESTRICT,
                                    CONSTRAINT users_id_fk FOREIGN KEY (user_id)
-                                     REFERENCES public.users (id) MATCH SIMPLE
+                                     REFERENCES public.users(id) MATCH SIMPLE
                                      ON UPDATE RESTRICT
                                      ON DELETE RESTRICT
 );
 
-CREATE TABLE files (
+CREATE TABLE IF NOT EXISTS files (
                        id BIGSERIAL NOT NULL,
                        file_name character varying COLLATE pg_catalog."default" NOT NULL,
                        url character varying COLLATE pg_catalog."default" NOT NULL,
-                       payment_id BIGSERIAL,
+                       payment_id bigint,
+                       CONSTRAINT payment_id_fk FOREIGN KEY (payment_id)
+                           REFERENCES public.payment_statistic(id) MATCH SIMPLE
+                           ON UPDATE RESTRICT
+                           ON DELETE RESTRICT,
                        CONSTRAINT files_id_pk PRIMARY KEY (id)
 );
 

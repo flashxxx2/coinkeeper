@@ -22,7 +22,7 @@ public class FileUploadEntity {
     private String fileName;
 
     @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="payment_id")
     private PaymentEntity payment;
 }

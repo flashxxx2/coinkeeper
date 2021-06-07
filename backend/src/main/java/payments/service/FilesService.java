@@ -28,7 +28,7 @@ public class FilesService {
 
     public ResponseEntity<FileModel> uploadFile(MultipartFile file) {
         FileModel model = fileStorageService.storeFile(file);
-        return new ResponseEntity<>(new FileModel(model.getId(), model.getFileName(), "files/"+model.getUrl()), HttpStatus.CREATED);
+        return new ResponseEntity<>(new FileModel(model.getId(), model.getFileName(), "media/files/"+model.getUrl()), HttpStatus.CREATED);
     }
 
     public ResponseEntity<List<FileModel>> uploadMultipleFiles(MultipartFile[] files) {

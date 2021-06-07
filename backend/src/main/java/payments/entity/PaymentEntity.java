@@ -36,18 +36,15 @@ public class PaymentEntity {
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @JsonProperty
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
+//    @JsonProperty
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private UserEntity userEntity;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy="payment", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="payment", cascade = {
+            CascadeType.ALL})
     private List<FileUploadEntity> paymentFiles;
-
-
-
-
 
 }
