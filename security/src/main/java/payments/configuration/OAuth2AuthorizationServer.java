@@ -36,16 +36,17 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
   public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
     clients
         .jdbc(dataSource)
-        .withClient("client").secret(passwordEncoder.encode("secret"))
+        .withClient("client")
+        .secret(passwordEncoder.encode("secret"))
         .scopes("read", "write")
-        .authorities("ROLE_CLIENT")
         .authorizedGrantTypes("password", "authorization_code", "implicit", "client_credentials", "refresh_token")
         .redirectUris("https://yandex.ru/")
         .accessTokenValiditySeconds(60 * 60)
         .refreshTokenValiditySeconds(7 * 24 * 60 * 60)
         .autoApprove(false)
         .and()
-        .withClient("remote").secret(passwordEncoder.encode("secret"));
+        .withClient("remote")
+        .secret(passwordEncoder.encode("secret"));
   }
 
   @Override

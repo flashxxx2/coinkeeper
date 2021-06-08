@@ -19,12 +19,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    public void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .authorizeRequests().anyRequest().authenticated()
-                .and().httpBasic()
-                .and().sessionManagement().disable();
+                .antMatcher("/payments/**").antMatcher("/media/**")
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated()
+        ;
     }
 
     @Bean

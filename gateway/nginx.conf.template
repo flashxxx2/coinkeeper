@@ -28,7 +28,7 @@ http {
     default_type application/json; # If no content-type then assume JSON
 
     location /api/auth {
-      # запросы на /api/auth не проксируем
+      # запросы на /auth не проксируем
       proxy_pass http://auth/api/auth;
     }
 
@@ -43,7 +43,7 @@ http {
       internal;
       gunzip on;
       proxy_method            POST;
-      proxy_pass              http://auth/api/auth/verify;
+      proxy_pass              http://auth;
       proxy_pass_request_body off;
       proxy_set_header        Content-Length "";
       proxy_set_header        X-Original-URI $request_uri;
