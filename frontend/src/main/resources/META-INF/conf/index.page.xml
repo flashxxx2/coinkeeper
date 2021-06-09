@@ -7,6 +7,7 @@
                 <actions>
                     <action id="view">
                         <open-page page-id="payments_view" master-field-id="id" detail-field-id="id"/>
+<!--                        route="/paymentsView"-->
                     </action>
                 </actions>
                 <toolbar place="topRight">

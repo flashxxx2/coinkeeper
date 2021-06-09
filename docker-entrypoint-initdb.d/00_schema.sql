@@ -51,10 +51,12 @@ INSERT INTO payment_statistic (created_dt, sum, category_id, comment, user_id) V
 ('2000-12-03T10:15:30', 1456, 3, 'Тусовка с друзьями', 1),
 ('2020-12-03T10:15:30', 14, 6, 'Коммуналка', 1);
 
-INSERT INTO files (id, file_name, url, payment_id) VALUES
-(1, 'Lich', 'C:\Users\amaximov\AppData\Local\Temp\upload13826495109969179102/lich.png', 1),
-(2, 'Lich', 'C:\Users\amaximov\AppData\Local\Temp\upload13826495109969179102/lich.png', 2),
-(3, 'Lich', 'C:\Users\amaximov\AppData\Local\Temp\upload13826495109969179102/lich.png', 3);
+INSERT INTO files (file_name, url, payment_id) VALUES
+('Сбербанк', 'https://htstatic.imgsmail.ru/pic_image/da6085d65b979aee7a14087701fac5f1/840/564/1861289/', 1),
+('из кб пива купил', 'https://www.retail.ru/upload/medialibrary/a7f/chek-na-sluzhbe-marketinga-14_1.jpg', 2),
+('Пятерка', 'https://check.ofd.ru/assets/top-check.1d7181b.png', 3),
+('хз', 'https://allcashbacks.com/web/uploads/new_uploads/2-chek.jpg', 3),
+('Tiffany', 'https://habrastorage.org/files/49d/d30/d33/49dd30d330f34d278e65d25d9084ad55.jpeg', 4);
 
 
 

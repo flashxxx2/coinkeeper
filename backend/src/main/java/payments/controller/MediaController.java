@@ -1,14 +1,14 @@
 package payments.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import payments.models.FileModel;
 import payments.service.FilesService;
+import payments.service.MediaService;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MediaController {
 
     private final FilesService filesService;
+    private final MediaService mediaService;
 
     @CrossOrigin(origins = "*")
     @PostMapping("/upload/photo")
@@ -29,9 +30,8 @@ public class MediaController {
         filesService.deleteFile(id);
     }
 
-    @CrossOrigin(origins = "*")
-    @GetMapping("/{fileName:.+}")
-    public ResponseEntity<Resource> downloadImage(@PathVariable String fileName, HttpServletRequest request) {
-        return filesService.downloadFile(fileName, request);
+    @GetMapping(value = "/{id}/images")
+    public List<FileModel> getImages(@PathVariable Long id) {
+        return mediaService.getPaymentImages(id);
     }
 }

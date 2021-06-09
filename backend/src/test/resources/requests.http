@@ -11,7 +11,7 @@ Content-Type: image/jpeg
 --WebAppBoundary--
 
 ###
-GET http://localhost:8081/media/image/02a42d4c-9cea-4bec-bf88-170cfaa5ac80
+GET http://localhost:7777/media/ru.png
 Authorization: Basic user pass
 Content-Type: image/jpeg
 
@@ -19,3 +19,9 @@ Content-Type: image/jpeg
 ###
 GET http://localhost:7777/media/lich.jpg
 Authorization: Basic user pass
+
+###
+GET http://localhost:7777/media/5/images
+Authorization: Basic user pass
+Content-Type: image/jpeg
+

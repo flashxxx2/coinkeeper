@@ -1,25 +1,26 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<simple-page xmlns="http://n2oapp.net/framework/config/schema/page-2.0" name="Просмотр операции">
-    <form id="paymentsForm" query-id="payment">
-        <fields>
-            <input-money id="sum" label="Сумма расхода" suffix="руб" enabled="false"/>
-            <select query-id="category" id="category" label="Категория расхода" enabled="false"/>
-            <text-area id="comment" label="Комментарий к расходу" enabled="false"/>
-        </fields>
-    </form>
-    <tiles id="imageTiles" query-id="paymentImages" depends-on="paymentsForm" detail-field-id="id"
-           height="200" width="200" name="Фотографии">
-        <pagination/>
-        <content>
-            <block text-field-id="url">
-                <image/>
-            </block>
-            <block text-field-id="name">
-                <text/>
-            </block>
-            <block text-field-id="size">
-                <text/>
-            </block>
-        </content>
-    </tiles>
-</simple-page>
+<page xmlns="http://n2oapp.net/framework/config/schema/page-2.0" name="Просмотр операции">
+    <regions>
+        <region>
+            <form id="paymentsForm" query-id="payment">
+                <fields>
+                    <input-money id="sum" label="Сумма расхода" suffix="руб" enabled="false"/>
+                    <select query-id="category" id="category" label="Категория расхода" enabled="false"/>
+                    <text-area id="comment" label="Комментарий к расходу" enabled="false"/>
+                </fields>
+            </form>
+            <tiles id="imageTiles" query-id="paymentImages" depends-on="paymentsForm" detail-field-id="id"
+                   height="200" width="200" name="Фотографии">
+                <pagination/>
+                <content>
+                    <block text-field-id="url">
+                        <image/>
+                    </block>
+                    <block text-field-id="fileName">
+                        <text/>
+                    </block>
+                </content>
+            </tiles>
+        </region>
+    </regions>
+</page>
