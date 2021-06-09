@@ -6,6 +6,7 @@ import payments.dto.PaymentDto;
 import payments.entity.CategoryEntity;
 import payments.entity.FileUploadEntity;
 import payments.entity.PaymentEntity;
+import payments.models.FileModel;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,16 +20,23 @@ public class Mapper {
         paymentEntity.setCreatedTime(LocalDateTime.now());
         paymentEntity.setCategory(toEntityCategory(paymentDto.getCategory()));
         paymentEntity.setComment(paymentDto.getComment());
-//        paymentEntity.setPaymentFiles(toEntityListFileUpload(paymentDto.getFileUpload()));
+        paymentEntity.setPaymentFiles(toEntityListFileUpload(paymentDto.getFileUpload()));
         return paymentEntity;
     }
 
     public static FileUploadEntity toEntityFileUpload(FileUploadDto fileUploadDto) {
         final var entity = new FileUploadEntity();
-//        entity.setId(fileUploadDto.getId());
-        entity.setFileName(fileUploadDto.getFileName());
+        entity.setName(fileUploadDto.getFileName());
         entity.setUrl(fileUploadDto.getUrl());
         return entity;
+    }
+
+    public static FileModel convertToFileModel(FileUploadEntity entity) {
+        FileModel dto = new FileModel();
+        dto.setId(entity.getId());
+        dto.setFileName(entity.getName());
+        dto.setUrl(entity.getUrl());
+        return dto;
     }
 
     public static List<FileUploadEntity> toEntityListFileUpload(List<FileUploadDto> fileUploadDtos) {
@@ -40,7 +48,7 @@ public class Mapper {
     public static FileUploadDto toDtoFileUpload(FileUploadEntity entity) {
         final var dto = new FileUploadDto();
         dto.setId(entity.getId());
-        dto.setFileName(entity.getFileName());
+        dto.setFileName(entity.getName());
         dto.setUrl(entity.getUrl());
         return dto;
     }

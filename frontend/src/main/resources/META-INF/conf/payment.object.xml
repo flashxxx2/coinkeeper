@@ -26,36 +26,8 @@
                 <param id="sum"/>
                 <param id="category"/>
                 <param id="comment"/>
+                <param id="fileUpload" mapping="['fileUpload']"/>
             </in-parameters>
         </operation>
-
-<!--        <operation id="delete">-->
-<!--            <invocation>-->
-<!--                <java method="delete">-->
-<!--                    <arguments>-->
-<!--                        <argument name="id" type="primitive"/>-->
-<!--                    </arguments>-->
-<!--                    <spring bean="fileStorageController"/>-->
-<!--                </java>-->
-<!--            </invocation>-->
-<!--            <in-parameters>-->
-<!--                <param id="id"/>-->
-<!--            </in-parameters>-->
-<!--        </operation>-->
-
-<!--        <operation id="submit">-->
-<!--            <invocation>-->
-<!--                <java method="submit">-->
-<!--                    <arguments>-->
-<!--                        <argument name="fileUpload.id" type="class"/>-->
-<!--                    </arguments>-->
-<!--                    <spring bean="fileStorageController"/>-->
-<!--                </java>-->
-<!--            </invocation>-->
-<!--            <in-parameters>-->
-<!--                <param id="fileUpload*.id" mapping="[0]" domain="integer[]"/>-->
-<!--            </in-parameters>-->
-<!--        </operation>-->
-
     </operations>
 </object>

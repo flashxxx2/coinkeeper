@@ -34,11 +34,12 @@ public class PaymentService {
     public PaymentDto savePayment(PaymentDto paymentDto) {
         var paymentEntity = toEntity(paymentDto);
         paymentRepository.save(paymentEntity);
-
-        List<FileUploadEntity> files = toEntityListFileUpload(paymentDto.getFileUpload()).stream()
-                .peek(file -> file.setPayment(paymentEntity))
-                .collect(Collectors.toList());
-        mediaRepository.saveAll(files);
+        if (!paymentDto.getFileUpload().isEmpty()) {
+            List<FileUploadEntity> files = toEntityListFileUpload(paymentDto.getFileUpload()).stream()
+                    .peek(file -> file.setPayment(paymentEntity))
+                    .collect(Collectors.toList());
+            mediaRepository.saveAll(files);
+        }
         return paymentDto;
     }
 

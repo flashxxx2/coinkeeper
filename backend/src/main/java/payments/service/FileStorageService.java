@@ -48,18 +48,6 @@ public class FileStorageService {
         }
     }
 
-    @SuppressWarnings("unused")
-    public void submit(List<Integer> ids) {
-        if (ids != null) {
-            for (Integer id : ids) {
-                FileModel model = storage.get(id);
-                if (model != null) {
-                    model.setStored(true);
-                }
-            }
-        }
-    }
-
     @Synchronized
     public FileModel storeFile(MultipartFile file) {
         try {
@@ -70,7 +58,7 @@ public class FileStorageService {
             targetLocation.toFile().deleteOnExit();
 
             var uri = ServletUriComponentsBuilder.fromPath(fileName).toUriString();
-            var model = new FileModel(++id, fileName, uri);
+            var model = new FileModel((long) ++id, fileName, uri);
             storage.put(id, model);
 
             return model;

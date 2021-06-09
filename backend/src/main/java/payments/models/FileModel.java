@@ -1,22 +1,19 @@
 package payments.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.UUID;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class FileModel {
-    private final Integer id;
-    private final String fileName;
-    private final String url;
-    private boolean stored;
+    private Long id;
+    private String fileName;
+    private String url;
 
-    public FileModel(Integer id, String fileName, String url) {
-        this.id = id;
-        this.fileName = fileName;
-        this.url = url;
-        stored = false;
-    }
 }
