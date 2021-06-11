@@ -3,12 +3,8 @@ package payments.service;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import payments.criteria.FileCriteria;
-import payments.entity.FileUploadEntity;
 import payments.exception.PaymentNotFoundException;
 import payments.mapper.Mapper;
 import payments.models.FileModel;
@@ -67,7 +63,7 @@ public class MediaService {
         var fileUploadEntity = mediaRepository.findAllByPayment(paymentEntity);
         return fileUploadEntity.stream().map(entity -> new FileModel(
                 entity.getId(),
-                entity.getFileName(),
+                entity.getName(),
                 entity.getUrl())).collect(Collectors.toList());
     }
 

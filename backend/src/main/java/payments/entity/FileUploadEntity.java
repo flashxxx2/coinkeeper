@@ -19,7 +19,7 @@ public class FileUploadEntity {
     private String url;
 
     @Column(name = "file_name")
-    private String fileName;
+    private String name;
 
     @EqualsAndHashCode.Exclude
     @ManyToOne(cascade = CascadeType.ALL)

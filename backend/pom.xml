@@ -9,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>payments</artifactId>
+        <artifactId>coinkeeper</artifactId>
         <groupId>org.example</groupId>
         <version>1.0</version>
     </parent>
@@ -58,7 +58,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
+            <version>1.18.20</version>
             <scope>provided</scope>
         </dependency>
 
