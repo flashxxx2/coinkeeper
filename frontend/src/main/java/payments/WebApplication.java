@@ -49,6 +49,7 @@ public class WebApplication {
         bean.setInitParameters(params);
         return bean;
     }
+
 //
 //    @Bean
 //    public ObjectMapper objectMapper() {

@@ -40,6 +40,16 @@ CREATE TABLE IF NOT EXISTS files (
                        CONSTRAINT files_id_pk PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS analitics (
+                       id BIGSERIAL NOT NULL,
+                       user_id bigint,
+                       balance bigint,
+                       planned_consumption bigint,
+                       fact_consumption bigint,
+                       expensive_purchase bigint,
+                       consumption_category varchar
+);
+
 INSERT INTO payment_category (id, name) VALUES (1, 'Продукты'), (2, 'Транспорт'), (3, 'Развлечения'),
                                                (4, 'Романтика'), (5, 'Еда вне дома'), (6, 'Услуги');
 
@@ -50,6 +60,9 @@ INSERT INTO payment_statistic (created_dt, sum, category_id, comment, user_id) V
 ('2005-12-03T10:15:30', 145, 2, 'На автобус', 1),
 ('2000-12-03T10:15:30', 1456, 3, 'Тусовка с друзьями', 1),
 ('2020-12-03T10:15:30', 14, 6, 'Коммуналка', 1);
+
+INSERT INTO analitics(user_id, balance, planned_consumption, fact_consumption, expensive_purchase, consumption_category) VALUES
+(1, 10000, 9000, 2000, 700, 'Развлечения');
 
 INSERT INTO files (file_name, url, payment_id) VALUES
 ('Сбербанк', 'https://htstatic.imgsmail.ru/pic_image/da6085d65b979aee7a14087701fac5f1/840/564/1861289/', 1),

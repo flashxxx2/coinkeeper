@@ -23,12 +23,12 @@ n2o:
   engine:
     pageStartsWith0: true
     rest:
-      url: http://localhost:7777
+      url: http://localhost:8888
 server:
   port: 9999
 coinkeeper:
   backend:
-    url: http://localhost:7777
+    url: http://localhost:8888
 
 frontend:
   url: http://localhost:9999

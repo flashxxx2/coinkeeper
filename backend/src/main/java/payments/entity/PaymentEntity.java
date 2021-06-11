@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import payments.dto.FileUploadDto;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -36,10 +35,9 @@ public class PaymentEntity {
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-//    @JsonProperty
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private UserEntity userEntity;
+    @JsonProperty()
+    @Column(name = "user_id")
+    private Long userId;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

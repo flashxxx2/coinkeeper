@@ -61,14 +61,17 @@ public class PaymentService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public PaymentDto updatePayment(PaymentDto paymentDto) {
-        var entity = new PaymentEntity();
-        entity.setId(paymentDto.getId());
+        var entity = paymentRepository.getById(paymentDto.getId());
         entity.setCreatedTime(LocalDateTime.now());
         entity.setSum(paymentDto.getSum());
         entity.setComment(paymentDto.getComment());
         entity.setCategory(toEntityCategory(paymentDto.getCategory()));
-
+        if(!paymentDto.getFileUpload().isEmpty()) {
+            mediaRepository.saveAll(toEntityListFileUpload(paymentDto.getFileUpload()));
+        } else
+            mediaRepository.deleteByPaymentId(entity.getId());
         return toDto(paymentRepository.save(entity));
     }
 

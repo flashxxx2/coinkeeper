@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import payments.exception.PaymentNotFoundException;
 import payments.mapper.Mapper;
@@ -74,5 +75,10 @@ public class MediaService {
                 .stream()
                 .map(Mapper::convertToFileModel)
                 .collect(Collectors.toList());
+    }
+
+    @Scheduled(cron = "0 22 * * *")
+    public void deleteUnMappedFiles() {
+        mediaRepository.deleteUnMappedRows();
     }
 }

@@ -10,7 +10,7 @@ services:
       args:
         JAR_FILE: backend/target/backend-1.0.jar
     ports:
-      - 8081:8081
+      - 8081:7777
     depends_on:
       - db
   frontend:
@@ -21,7 +21,7 @@ services:
       args:
         JAR_FILE: frontend/target/frontend-1.0-jar-with-dependencies.jar
     ports:
-      - 8080:8080
+      - 8080:9999
   db:
     image: postgres
     ports:
@@ -34,8 +34,9 @@ services:
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
   gateway:
     image: gateway
-    build: gateway
+    build: security/gateway
     ports:
       - 7777:80
+    # docker 20+
     extra_hosts:
       - "host.docker.internal:host-gateway"

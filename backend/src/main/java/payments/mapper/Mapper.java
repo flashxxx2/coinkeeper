@@ -1,8 +1,10 @@
 package payments.mapper;
 
+import payments.dto.AnaliticsDto;
 import payments.dto.CategoryDto;
 import payments.dto.FileUploadDto;
 import payments.dto.PaymentDto;
+import payments.entity.AnaliticsEntity;
 import payments.entity.CategoryEntity;
 import payments.entity.FileUploadEntity;
 import payments.entity.PaymentEntity;
@@ -85,5 +87,27 @@ public class Mapper {
         categoryDto.setId(categoryEntity.getId());
         categoryDto.setName(categoryEntity.getName());
         return categoryDto;
+    }
+
+    public static AnaliticsDto toDtoAnalitics(AnaliticsEntity entity) {
+        final var dto = new AnaliticsDto();
+        dto.setId(entity.getId());
+        dto.setBalance(entity.getBalance());
+        dto.setPlannedConsumption(entity.getPlannedConsumption());
+        dto.setFactConsumption(entity.getFactConsumption());
+        dto.setExpensivePurchase(entity.getExpensivePurchase());
+        dto.setConsumptionCategory(entity.getConsumptionCategory());
+        return dto;
+    }
+
+    public static AnaliticsEntity toEntityAnalitics(AnaliticsDto dto) {
+        final var entity = new AnaliticsEntity();
+        entity.setFactConsumption(dto.getFactConsumption());
+        entity.setExpensivePurchase(dto.getExpensivePurchase());
+        entity.setBalance(dto.getBalance());
+        entity.setConsumptionCategory(dto.getConsumptionCategory());
+        entity.setId(dto.getId());
+        entity.setPlannedConsumption(dto.getPlannedConsumption());
+        return entity;
     }
 }
