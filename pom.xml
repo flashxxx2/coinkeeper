@@ -65,6 +65,7 @@
                         <manifest>
                             <mainClass>payments.Application</mainClass>
                             <mainClass>payments.WebApplication</mainClass>
+                            <mainClass>payments.SecurityApplication</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

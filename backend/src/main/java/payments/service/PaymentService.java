@@ -62,7 +62,7 @@ public class PaymentService {
     }
 
     public PaymentDto updatePayment(PaymentDto paymentDto) {
-        PaymentEntity entity = new PaymentEntity();
+        var entity = new PaymentEntity();
         entity.setId(paymentDto.getId());
         entity.setCreatedTime(LocalDateTime.now());
         entity.setSum(paymentDto.getSum());

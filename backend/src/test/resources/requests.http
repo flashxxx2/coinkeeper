@@ -21,7 +21,7 @@ GET http://localhost:7777/media/lich.jpg
 Authorization: Basic user pass
 
 ###
-GET http://localhost:7777/media/5/images
+GET http://localhost:7777/media/7/images
 Authorization: Basic user pass
 Content-Type: image/jpeg
 

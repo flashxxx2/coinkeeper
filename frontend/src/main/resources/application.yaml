@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   jpa:
     generate-ddl: false
     hibernate:
@@ -11,6 +13,12 @@ spring:
   data:
     rest:
       base-path: /data
+  servlet:
+    multipart:
+      max-request-size: 15MB
+      max-file-size: 15MB
+      file-size-threshold: 2KB
+      enabled: true
 n2o:
   engine:
     pageStartsWith0: true

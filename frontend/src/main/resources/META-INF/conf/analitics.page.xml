@@ -46,12 +46,8 @@
                         <text id="factConsumption">Ваш фактический расход на текущий месяц:${}</text>
                     </line>
 
-
                     <line label="Данные о покупках">
                         <text id="expensivePurchase">Самая дорогая покупка в этом месяце:${}</text>
-
-
-
                         <text id="consumptionCategory">Наибольший расход в этом месяце по категории:${}</text>
                     </line>
                 </fields>

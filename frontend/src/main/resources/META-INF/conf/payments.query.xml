@@ -25,7 +25,6 @@
                 <more filter-id="createdTime.begin">createdTimeFrom={createdTime.begin}</more>
                 <less filter-id="createdTime.end">createdTimeTo={createdTime.end}</less>
             </filters>
-            <sorting mapping="['createdTime']">sort=createdTime,{createdTime}</sorting>
         </field>
 
         <field id="sum" domain="integer">
