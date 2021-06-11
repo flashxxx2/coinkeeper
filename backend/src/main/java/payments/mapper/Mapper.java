@@ -74,7 +74,9 @@ public class Mapper {
         paymentDto.setCategory(toDtoCategory(paymentEntity.getCategory()));
         paymentDto.setId(paymentEntity.getId());
         paymentDto.setComment(paymentEntity.getComment());
-        paymentDto.setFileUpload(toDtoListFileUpload(paymentEntity.getPaymentFiles()));
+        if (paymentEntity.getPaymentFiles() != null) {
+            paymentDto.setFileUpload(toDtoListFileUpload(paymentEntity.getPaymentFiles()));
+        }
         return paymentDto;
     }
 
