@@ -25,3 +25,14 @@ GET http://localhost:7777/media/7/images
 Authorization: Basic user pass
 Content-Type: image/jpeg
 
+###
+POST http://localhost:7777/api/demo/do-stuff
+Authorization: secret-token
+
+###
+GET http://localhost:8888/analitics
+X-USER-PROFILE: 1
+
+###
+GET http://localhost:8888/payments/1
+

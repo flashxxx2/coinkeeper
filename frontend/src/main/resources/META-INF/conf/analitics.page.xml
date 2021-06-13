@@ -26,7 +26,7 @@
                     </line>
 
                     <line label="Информация о расходах">
-                        <input-money id="consumption" label="Ваш плановый расход на текущий месяц:">Ваш плановый расход на текущий месяц составляет:
+                        <input-money id="plannedConsumption" label="Ваш плановый расход на текущий месяц:">Ваш плановый расход на текущий месяц составляет:
                             <dependencies>
                                 <enabling on="changeConsumptionEnabled">
                                     <![CDATA[
@@ -43,14 +43,19 @@
                         <text id="consumptionText" no-label="true">Изменить</text>
                         <checkbox id="changeConsumptionEnabled" src="Switch"
                                   style="margin-top: -20px;"/>
-                        <text id="factConsumption">Ваш фактический расход на текущий месяц:${}</text>
+                        <output-text id="factConsumption" label="Ваш фактический расход на текущий месяц:"/>
                     </line>
 
                     <line label="Данные о покупках">
-                        <text id="expensivePurchase">Самая дорогая покупка в этом месяце:${}</text>
-                        <text id="consumptionCategory">Наибольший расход в этом месяце по категории:${}</text>
+                        <output-text id="expensivePurchase" label="Самая дорогая покупка в этом месяце:"/>
+                        <output-text id="consumptionCategory" label="Наибольший расход в этом месяце по категории:"/>
                     </line>
                 </fields>
+                <toolbar place="bottomLeft">
+                    <button id="saveAnalitics" label="Сохранить" color="danger">
+                        <invoke operation-id="update"/>
+                    </button>
+                </toolbar>
             </form>
         </region>
     </regions>

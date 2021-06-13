@@ -1,5 +1,5 @@
 server:
-  port: 7777
+  port: 8888
   servlet:
     session:
       cookie:
@@ -23,25 +23,25 @@ spring:
     hibernate:
       show-sql: true
       ddl-auto: none
-  security:
-    oauth2:
-      client:
-        registration:
-          custom-client:
-            client-id: client
-            client-secret: secret
-            client-name: Auth Server
-            scope: read, write
-            provider: custom-provider
-            redirect-uri: http://localhost:8082/login/oauth2/code/
-            client-authentication-method: basic
-            authorization-grant-type: authorization_code
-        provider:
-          custom-provider:
-            token-uri: http://localhost:8000/auth/oauth/token
-            authorization-uri: http://localhost:8000/auth/oauth/authorize
-            user-info-uri: http://localhost:8000/auth/user/me
-            user-name-attribute: name
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          custom-client:
+#            client-id: client
+#            client-secret: secret
+#            client-name: Auth Server
+#            scope: read, write
+#            provider: custom-provider
+#            redirect-uri: http://localhost:8082/login/oauth2/code/
+#            client-authentication-method: basic
+#            authorization-grant-type: authorization_code
+#        provider:
+#          custom-provider:
+#            token-uri: http://localhost:8000/auth/oauth/token
+#            authorization-uri: http://localhost:8000/auth/oauth/authorize
+#            user-info-uri: http://localhost:8000/auth/user/me
+#            user-name-attribute: name
 
 
 

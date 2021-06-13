@@ -1,0 +1,10 @@
+###
+POST http://localhost:7777/api/auth/verify
+Authorization: secret-token
+X-USER-PROFILE: user
+###
+###
+GET http://localhost:7777/analitics
+Authorization: secret-token
+X-USER-PROFILE: user
+
