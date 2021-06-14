@@ -3,18 +3,21 @@ spring:
     enabled: true
     change-log: classpath:/db/baseChangelog.xml
   datasource:
-    url: jdbc:postgresql://localhost:5000/db
+    url: jdbc:postgresql://localhost:5555/dbusers
     username: app
     password: pass
     initialization-mode: always
     platform: postgres
-
-#server:
-#  port: 8000
-#  servlet:
-#    context-path: /auth
-#user:
-#  oauth:
-#    clientId: client
-#    clientSecret: secret
-#    redirectUris: http://localhost:8082/login/oauth2/code/
+  mvc:
+    view:
+      prefix: WEB-INF/jsp/
+      suffix: .jsp
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      show-sql: true
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8080

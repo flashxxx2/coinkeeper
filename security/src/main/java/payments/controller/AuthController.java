@@ -1,4 +1,4 @@
-package payments.rest;
+package payments.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import payments.dto.ProfileDto;
 import payments.dto.TokenVerificationResponse;
-import payments.repository.UsersRepository;
+import payments.repository.UserRepository;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/")
 public class AuthController {
   private final ObjectMapper mapper;
-  private final UsersRepository usersRepository;
+  private final UserRepository userRepository;
 
   @RequestMapping("/api/auth/verify")
   public ResponseEntity<String> verify(@RequestHeader("X-USER-PROFILE") String userName) throws JsonProcessingException {
 
-    final var user = usersRepository.findByUsername(userName);
+    final var user = userRepository.findByUsername(userName);
     if (user != null) {
       final var header = mapper.writeValueAsString(
               new TokenVerificationResponse(true, new ProfileDto(

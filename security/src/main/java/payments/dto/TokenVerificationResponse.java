@@ -5,9 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class TokenVerificationResponse {
   private boolean ok;
   private Object payload; // profile
+
+  public TokenVerificationResponse(boolean ok, Object payload) {
+    this.ok = ok;
+    this.payload = payload;
+  }
 }

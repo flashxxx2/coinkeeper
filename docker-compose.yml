@@ -40,3 +40,11 @@ services:
     # docker 20+
     extra_hosts:
       - "host.docker.internal:host-gateway"
+  dbusers:
+    image: postgres:alpine
+    ports:
+      - 5555:5432
+    environment:
+      - POSTGRES_DB=users
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=pass
