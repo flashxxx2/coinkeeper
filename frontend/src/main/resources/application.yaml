@@ -33,5 +33,9 @@ coinkeeper:
 frontend:
   url: http://localhost:9999
 
-
+keycloak:
+  auth-server-url: http://localhost:8484/auth
+  realm: coinkeeper
+  resource: coinkeeper
+  public-client: true
 

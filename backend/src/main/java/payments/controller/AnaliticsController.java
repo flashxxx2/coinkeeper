@@ -1,6 +1,7 @@
 package payments.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.web.bind.annotation.*;
 import payments.dto.AnaliticsDto;
 import payments.entity.AnaliticsEntity;
@@ -19,7 +20,7 @@ public class AnaliticsController {
 //    }
 
     @GetMapping
-    private AnaliticsDto getAnalitics() {
+    private AnaliticsDto getAnalitics(Authentication authentication) {
        return service.getUserAnalitics(1L);
     }
 

@@ -77,7 +77,7 @@ public class MediaService {
                 .collect(Collectors.toList());
     }
 
-    @Scheduled(cron = "0 22 * * *")
+    @Scheduled(cron = "0 22 * * * *")
     public void deleteUnMappedFiles() {
         mediaRepository.deleteUnMappedRows();
     }

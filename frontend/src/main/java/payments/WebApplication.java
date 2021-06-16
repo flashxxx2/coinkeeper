@@ -50,6 +50,19 @@ public class WebApplication {
         return bean;
     }
 
+    @Bean
+    ServletRegistrationBean<ProxyServlet> proxyInputServiceServlet(
+            @Value("http://localhost:8484/auth") String inputDataUrl
+    ) {
+        ServletRegistrationBean<ProxyServlet> bean =
+                new ServletRegistrationBean<>(new ProxyServlet(), "/*");
+        Map<String, String> params = new HashMap<>();
+        params.put("targetUri", inputDataUrl);
+        params.put(ProxyServlet.P_LOG, "true");
+        bean.setInitParameters(params);
+        return bean;
+    }
+
 //
 //    @Bean
 //    public ObjectMapper objectMapper() {

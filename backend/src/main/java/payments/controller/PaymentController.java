@@ -34,6 +34,7 @@ public class PaymentController {
         paymentService.deletePayment(id);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping
     public Page<PaymentDto> getAllPayments(@BeanParam PaymentCriteria criteria) {
         return paymentService.findPayments(criteria);
