@@ -1,4 +1,26 @@
 spring:
+  security:
+    oauth2:
+      client:
+
+        registration:
+          keycloak:
+            client-id: frontend
+            client-secret: 0c35f0a7-866d-45a8-afb4-7a8afade8b17
+            clientName: Keycloak
+            authorization-grant-type: authorization_code
+            redirectUriTemplate: '{baseUrl}/login/oauth2/code/{registrationId}'
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          keycloak:
+            authorization-uri: http://localhost:8484/auth/realms/coinkeeper/protocol/openid-connect/auth
+            token-uri: http://localhost:8484/auth/realms/coinkeeper/protocol/openid-connect/token
+            user-info-uri: http://localhost:8484/auth/realms/coinkeeper/protocol/openid-connect/userinfo
+            jwk-set-uri: http://localhost:8484/auth/realms/coinkeeper/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
   main:
     allow-bean-definition-overriding: true
   jpa:

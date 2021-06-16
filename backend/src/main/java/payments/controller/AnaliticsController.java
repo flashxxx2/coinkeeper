@@ -1,11 +1,12 @@
 package payments.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import payments.dto.AnaliticsDto;
 import payments.entity.AnaliticsEntity;
 import payments.service.AnaliticsService;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/analitics")
@@ -20,7 +21,7 @@ public class AnaliticsController {
 //    }
 
     @GetMapping
-    private AnaliticsDto getAnalitics(Authentication authentication) {
+    private AnaliticsDto getAnalitics(Principal authentication) {
        return service.getUserAnalitics(1L);
     }
 
