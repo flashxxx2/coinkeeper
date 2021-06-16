@@ -24,12 +24,6 @@ spring:
       show-sql: true
       ddl-auto: none
 
-#keycloak:
-#  auth-server-url: http://localhost:8484/auth
-#  realm: coinkeeper
-#  resource: coinkeeper
-#  public-client: true
-
 
 
 

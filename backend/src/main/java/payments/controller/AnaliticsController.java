@@ -7,8 +7,6 @@ import payments.dto.AnaliticsDto;
 import payments.entity.AnaliticsEntity;
 import payments.service.AnaliticsService;
 
-import java.security.Principal;
-
 @RestController
 @RequestMapping("/analitics")
 @RequiredArgsConstructor
