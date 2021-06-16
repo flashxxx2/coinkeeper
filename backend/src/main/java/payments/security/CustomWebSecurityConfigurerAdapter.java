@@ -10,16 +10,26 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.sql.DataSource;
+
 
 @Configuration
 @EnableWebSecurity
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
+    private final DataSource dataSource;
+    private final UserDetailsServiceImpl userDetailsService;
+
+    public CustomWebSecurityConfigurerAdapter(DataSource dataSource, UserDetailsServiceImpl userDetailsService) {
+        this.dataSource = dataSource;
+        this.userDetailsService = userDetailsService;
+    }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password(passwordEncoder().encode("pass"))
-                .authorities("ROLE_USER");
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -30,6 +40,12 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
                 .httpBasic()
                 .and()
                 .csrf().disable();
+    }
+
+    @Override
+    public void configure(AuthenticationManagerBuilder builder)
+            throws Exception {
+        builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
