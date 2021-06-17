@@ -6,6 +6,9 @@ import payments.entity.AnaliticsEntity;
 import payments.mapper.Mapper;
 import payments.repository.AnaliticsRepository;
 
+import java.math.BigDecimal;
+import java.util.Optional;
+
 @Service
 public class AnaliticsService {
 
@@ -16,7 +19,13 @@ public class AnaliticsService {
     }
 
     public AnaliticsDto getUserAnalitics(Long userId) {
-        return Mapper.toDtoAnalitics(repository.getAnaliticsEntitiesByUserId(userId));
+        return Optional.of(Mapper.toDtoAnalitics(repository.getAnaliticsEntitiesByUserId(userId))).orElse(new AnaliticsDto(
+                null,
+                0L,
+                0L,
+                0L,
+                BigDecimal.ZERO,
+                "Неопределенная категория"));
     }
 
     public AnaliticsEntity save(AnaliticsDto analiticsDto) {

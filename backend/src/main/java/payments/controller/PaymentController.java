@@ -3,13 +3,16 @@ package payments.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import payments.criteria.PaymentCriteria;
 import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
+import payments.entity.UserEntity;
 import payments.service.PaymentService;
 
 import javax.ws.rs.*;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -35,7 +38,8 @@ public class PaymentController {
     }
 
     @GetMapping
-    public Page<PaymentDto> getAllPayments(@BeanParam PaymentCriteria criteria) {
+    public Page<PaymentDto> getAllPayments(@BeanParam PaymentCriteria criteria, Principal authentication) {
+        criteria.setUserId(((UserEntity) ((UsernamePasswordAuthenticationToken) authentication).getPrincipal()).getId());
         return paymentService.findPayments(criteria);
     }
 

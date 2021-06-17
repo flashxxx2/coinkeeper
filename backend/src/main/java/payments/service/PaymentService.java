@@ -2,7 +2,8 @@ package payments.service;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import payments.criteria.PaymentCriteria;
@@ -10,7 +11,6 @@ import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
 import payments.entity.FileUploadEntity;
 import payments.mapper.Mapper;
-import payments.entity.PaymentEntity;
 import payments.repository.CategoryRepository;
 import payments.repository.MediaRepository;
 import payments.repository.PaymentRepository;

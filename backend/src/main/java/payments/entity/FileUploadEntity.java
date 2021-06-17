@@ -1,10 +1,9 @@
 package payments.entity;
 
-import lombok.*;
-import org.springframework.data.domain.Page;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Data

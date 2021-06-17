@@ -31,6 +31,9 @@ public class PaymentCriteria extends RestCriteria {
     @QueryParam("categoryId")
     private Long categoryId;
 
+    @QueryParam("userId")
+    private Long userId;
+
     @Override
     protected List<Sort.Order> getDefaultOrders() {
         return Arrays.asList(Sort.Order.desc("createdTime"), Sort.Order.asc("category.name"));

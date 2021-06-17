@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS payment_category (
 
 CREATE TABLE IF NOT EXISTS users (
                        id BIGSERIAL NOT NULL,
+                       name varchar NOT NULL,
                        username varchar NOT NULL,
                        password varchar NOT NULL,
                        CONSTRAINT users_id_pk PRIMARY KEY (id)
@@ -51,9 +52,10 @@ CREATE TABLE IF NOT EXISTS analitics (
 );
 
 INSERT INTO payment_category (id, name) VALUES (1, 'Продукты'), (2, 'Транспорт'), (3, 'Развлечения'),
-                                               (4, 'Романтика'), (5, 'Еда вне дома'), (6, 'Услуги');
+                                               (4, 'Романтика'), (5, 'Еда вне дома'), (6, 'Услуги'),
+                                               (7, 'Неопределенная категория');
 
-INSERT INTO users (username, password) VALUES ('user', '$2y$12$GmXGz3uWFWBFDJpxj/wQQuTg45KKCMhF1YqOgGP0cDYpvxxCOER4S');
+INSERT INTO users (name, username, password) VALUES ('Vasya','user', '$2y$12$GmXGz3uWFWBFDJpxj/wQQuTg45KKCMhF1YqOgGP0cDYpvxxCOER4S');
 
 INSERT INTO payment_statistic (created_dt, sum, category_id, comment, user_id) VALUES
 ('1999-12-03T10:15:30', 123, 1, 'Хлебушек из пятерочки', 1),
