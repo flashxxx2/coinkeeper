@@ -7,6 +7,8 @@ import payments.dto.AnaliticsDto;
 import payments.entity.AnaliticsEntity;
 import payments.service.AnaliticsService;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/analitics")
 @RequiredArgsConstructor
@@ -14,13 +16,9 @@ public class AnaliticsController {
 
     private final AnaliticsService service;
 
-//    @GetMapping
-//    private AnaliticsDto getAnalitics(@RequestHeader("X-Profile") String userId) {
-//       return service.getUserAnalitics(1L);
-//    }
-
     @GetMapping
-    private AnaliticsDto getAnalitics(Authentication authentication) {
+    private AnaliticsDto getAnalitics(Principal authentication) {
+        authentication.getName();
        return service.getUserAnalitics(1L);
     }
 

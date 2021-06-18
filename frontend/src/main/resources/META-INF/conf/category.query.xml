@@ -3,7 +3,7 @@
        object-id="category">
 
     <list>
-        <rest>/payments/category</rest>
+        <rest>api/payments/category</rest>
     </list>
 
     <fields>

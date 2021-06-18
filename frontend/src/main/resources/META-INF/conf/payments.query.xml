@@ -4,11 +4,11 @@
 
     <list result-mapping="['content']" count-mapping="['totalElements']">
         <rest method="GET"
-              filters-separator="&amp;">/payments?{filters}&amp;size={limit}&amp;page={page}&amp;{sorting}</rest>
+              filters-separator="&amp;">/api/payments?{filters}&amp;size={limit}&amp;page={page}&amp;{sorting}</rest>
     </list>
     <unique>
         <rest method="GET"
-              filters-separator="&amp;">/payments/{id}</rest>
+              filters-separator="&amp;">/api/payments/{id}</rest>
     </unique>
 
     <fields>

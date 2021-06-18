@@ -4,7 +4,7 @@
 
         <operation id="create" name="Добавить" success-text="Расход успешно добавлен">
             <invocation>
-                <rest method="POST">/payments/</rest>
+                <rest method="POST">api/payments/</rest>
             </invocation>
             <in-parameters>
                 <param id="sum"/>
@@ -19,7 +19,7 @@
 
         <operation id="update" name="Изменить" success-text="Данные о расходе изменены">
             <invocation>
-                <rest method="PUT">/payments/{id}</rest>
+                <rest method="PUT">api/payments/{id}</rest>
             </invocation>
             <in-parameters>
                 <param id="id"/>

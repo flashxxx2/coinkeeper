@@ -4,7 +4,7 @@
 
         <operation id="delete" name="Удалить" success-text="Данные о расходе удалены">
             <invocation>
-                <rest method="DELETE">/payments/{id}</rest>
+                <rest method="DELETE">api/payments/{id}</rest>
             </invocation>
             <in-parameters>
                 <param id="id"/>

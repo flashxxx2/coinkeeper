@@ -4,7 +4,7 @@
 
         <operation id="update" name="Сохранить">
             <invocation>
-                <rest method="PUT">analitics/update</rest>
+                <rest method="PUT">api/analitics/update</rest>
             </invocation>
             <in-parameters>
                 <param id="id" mapping="['id']"/>

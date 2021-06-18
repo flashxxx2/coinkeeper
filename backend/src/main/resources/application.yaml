@@ -4,10 +4,32 @@ server:
     session:
       cookie:
         name: UISESSION
+    context-path: /api
 app:
   upload:
     dir: "media/files/"
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: coinkeeper
+            client-secret: 1193fcd4-66fa-46c5-bcea-007cb76c635d
+            clientName: Keycloak
+            authorization-grant-type: authorization_code
+            redirectUriTemplate: '{baseUrl}/login/oauth2/code/{registrationId}'
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          keycloak:
+            authorization-uri: http://localhost:8484/auth/realms/coinkeeper/protocol/openid-connect/auth
+            token-uri: http://localhost:8484/auth/realms/coinkeeper/protocol/openid-connect/token
+            user-info-uri: http://localhost:8484/auth/realms/coinkeeper/protocol/openid-connect/userinfo
+            jwk-set-uri: http://localhost:8484/auth/realms/coinkeeper/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
   liquibase:
     enabled: true
     change-log: classpath:/db/baseChangelog.xml
@@ -23,25 +45,11 @@ spring:
     hibernate:
       show-sql: true
       ddl-auto: none
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          custom-client:
-#            client-id: client
-#            client-secret: secret
-#            client-name: Auth Server
-#            scope: read, write
-#            provider: custom-provider
-#            redirect-uri: http://localhost:8082/login/oauth2/code/
-#            client-authentication-method: basic
-#            authorization-grant-type: authorization_code
-#        provider:
-#          custom-provider:
-#            token-uri: http://localhost:8000/auth/oauth/token
-#            authorization-uri: http://localhost:8000/auth/oauth/authorize
-#            user-info-uri: http://localhost:8000/auth/user/me
-#            user-name-attribute: name
+keycloak:
+  auth-server-url: http://localhost:8484/auth
+  realm: coinkeeper
+  resource: coinkeeper
+  public-client: true
 
 
 

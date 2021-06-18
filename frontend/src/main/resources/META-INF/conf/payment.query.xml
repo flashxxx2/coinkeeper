@@ -3,10 +3,10 @@
        object-id="payment">
 
     <list>
-        <rest>/payments?{filters}</rest>
+        <rest>api/payments?{filters}</rest>
     </list>
     <unique>
-        <rest>/payments/{id}</rest>
+        <rest>api/payments/{id}</rest>
     </unique>
 
     <fields>
