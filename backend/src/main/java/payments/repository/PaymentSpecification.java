@@ -34,9 +34,9 @@ public class PaymentSpecification implements Specification<PaymentEntity> {
             predicate = builder.and(predicate, builder.equal(root.get("category").get("id"),
                     criteria.getCategoryId()));
         }
-        if (criteria.getUserId() != null) {
-            predicate = builder.and(predicate, builder.equal(root.get("userId"),
-                    criteria.getUserId()));
+        if (criteria.getUserName() != null) {
+            predicate = builder.and(predicate, builder.equal(root.get("userName"),
+                    criteria.getUserName()));
         }
 
         return predicate;

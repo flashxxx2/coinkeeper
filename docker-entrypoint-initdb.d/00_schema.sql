@@ -3,13 +3,6 @@ CREATE TABLE IF NOT EXISTS payment_category (
                                   name character varying COLLATE pg_catalog."default" NOT NULL,
                                   CONSTRAINT payment_category_id_pk PRIMARY KEY (id));
 
-CREATE TABLE IF NOT EXISTS users (
-                       id BIGSERIAL NOT NULL,
-                       name varchar NOT NULL,
-                       username varchar NOT NULL,
-                       password varchar NOT NULL,
-                       CONSTRAINT users_id_pk PRIMARY KEY (id)
-);
 
 CREATE TABLE IF NOT EXISTS payment_statistic (
                                    id BIGSERIAL NOT NULL,
@@ -17,16 +10,12 @@ CREATE TABLE IF NOT EXISTS payment_statistic (
                                    sum numeric(12,2) NOT NULL,
                                    category_id bigint NOT NULL,
                                    comment varchar,
-                                   user_id bigint,
+                                   user_name varchar,
                                    CONSTRAINT payment_id_pk PRIMARY KEY (id),
                                    CONSTRAINT payments_category_id_fk FOREIGN KEY (category_id)
                                    REFERENCES public.payment_category (id) MATCH SIMPLE
                                    ON UPDATE RESTRICT
-                                   ON DELETE RESTRICT,
-                                   CONSTRAINT users_id_fk FOREIGN KEY (user_id)
-                                     REFERENCES public.users(id) MATCH SIMPLE
-                                     ON UPDATE RESTRICT
-                                     ON DELETE RESTRICT
+                                   ON DELETE RESTRICT
 );
 
 CREATE TABLE IF NOT EXISTS files (
@@ -43,7 +32,7 @@ CREATE TABLE IF NOT EXISTS files (
 
 CREATE TABLE IF NOT EXISTS analitics (
                        id BIGSERIAL NOT NULL,
-                       user_id bigint,
+                       user_name varchar,
                        balance bigint,
                        planned_consumption bigint,
                        fact_consumption bigint,
@@ -55,16 +44,17 @@ INSERT INTO payment_category (id, name) VALUES (1, 'Продукты'), (2, 'Т�
                                                (4, 'Романтика'), (5, 'Еда вне дома'), (6, 'Услуги'),
                                                (7, 'Неопределенная категория');
 
-INSERT INTO users (name, username, password) VALUES ('Vasya','user', '$2y$12$GmXGz3uWFWBFDJpxj/wQQuTg45KKCMhF1YqOgGP0cDYpvxxCOER4S');
+INSERT INTO payment_statistic (created_dt, sum, category_id, comment, user_name) VALUES
+('1999-12-03T10:15:30', 123, 1, 'Хлебушек из пятерочки', 'user'),
+('2005-12-03T10:15:30', 145, 2, 'На автобус', 'user'),
+('2000-12-03T10:15:30', 1456, 3, 'Тусовка с друзьями', 'user'),
+('2020-12-03T10:15:30', 141, 5, 'Коммуналка', 'user'),
+('2020-11-03T10:15:31', 23, 2, 'Коммуналка', 'user'),
+('2020-10-03T10:15:33', 143, 3, 'Коммуналка', 'user'),
+('2020-4-03T10:15:34', 1, 1, 'Коммуналка', 'user');
 
-INSERT INTO payment_statistic (created_dt, sum, category_id, comment, user_id) VALUES
-('1999-12-03T10:15:30', 123, 1, 'Хлебушек из пятерочки', 1),
-('2005-12-03T10:15:30', 145, 2, 'На автобус', 1),
-('2000-12-03T10:15:30', 1456, 3, 'Тусовка с друзьями', 1),
-('2020-12-03T10:15:30', 14, 6, 'Коммуналка', 1);
-
-INSERT INTO analitics(user_id, balance, planned_consumption, fact_consumption, expensive_purchase, consumption_category) VALUES
-(1, 10000, 9000, 2000, 700, 'Развлечения');
+INSERT INTO analitics(user_name, balance, planned_consumption, fact_consumption, expensive_purchase, consumption_category) VALUES
+('user', 10000, 9000, 2000, 700, 'Развлечения');
 
 INSERT INTO files (file_name, url, payment_id) VALUES
 ('Сбербанк', 'https://htstatic.imgsmail.ru/pic_image/da6085d65b979aee7a14087701fac5f1/840/564/1861289/', 1),

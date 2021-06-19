@@ -1,14 +1,10 @@
 package payments.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import payments.dto.AnaliticsDto;
 import payments.entity.AnaliticsEntity;
-import payments.entity.UserEntity;
 import payments.service.AnaliticsService;
-
-import java.security.Principal;
 
 @RestController
 @RequestMapping("/analitics")
@@ -18,9 +14,8 @@ public class AnaliticsController {
     private final AnaliticsService service;
 
     @GetMapping
-    private AnaliticsDto getAnalitics(Principal authentication) {
-        long id = ((UserEntity) ((UsernamePasswordAuthenticationToken) authentication).getPrincipal()).getId();
-        return service.getUserAnalitics(id);
+    private AnaliticsDto getAnalitics(@RequestHeader("X-Profile") String userName) {
+        return service.getUserAnalitics(userName);
     }
 
     @PostMapping("/save")

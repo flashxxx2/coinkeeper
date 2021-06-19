@@ -20,8 +20,8 @@ public class AnaliticsEntity {
     private Long id;
 
     @JsonProperty
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "user_name")
+    private String userName;
 
     @JsonProperty
     private Long balance;

@@ -11,18 +11,24 @@ import payments.entity.PaymentEntity;
 import payments.models.FileModel;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Mapper {
-    public static PaymentEntity toEntity(PaymentDto paymentDto) {
+    private static String STATIC = "https://cs6.pikabu.ru/post_img/2015/07/04/10/1436029898_1190099444.jpg";
+
+    public static PaymentEntity toEntity(PaymentDto paymentDto, String userName) {
         final var paymentEntity = new PaymentEntity();
         paymentEntity.setId(paymentDto.getId());
         paymentEntity.setSum(paymentDto.getSum());
         paymentEntity.setCreatedTime(LocalDateTime.now());
         paymentEntity.setCategory(toEntityCategory(paymentDto.getCategory()));
         paymentEntity.setComment(paymentDto.getComment());
-        paymentEntity.setPaymentFiles(toEntityListFileUpload(paymentDto.getFileUpload()));
+        if (paymentDto.getFileUpload() != null) {
+            paymentEntity.setPaymentFiles(toEntityListFileUpload(paymentDto.getFileUpload()));
+        }
+        paymentEntity.setUserName(userName);
         return paymentEntity;
     }
 
@@ -76,9 +82,10 @@ public class Mapper {
         paymentDto.setCategory(toDtoCategory(paymentEntity.getCategory()));
         paymentDto.setId(paymentEntity.getId());
         paymentDto.setComment(paymentEntity.getComment());
-        if (paymentEntity.getPaymentFiles() != null) {
+        if (!paymentEntity.getPaymentFiles().isEmpty()) {
             paymentDto.setFileUpload(toDtoListFileUpload(paymentEntity.getPaymentFiles()));
-        }
+        } else
+            paymentDto.setFileUpload(toDtoListFileUpload(Collections.singletonList(getStaticFileEntity())));
         return paymentDto;
     }
 
@@ -108,6 +115,12 @@ public class Mapper {
         entity.setConsumptionCategory(dto.getConsumptionCategory());
         entity.setId(dto.getId());
         entity.setPlannedConsumption(dto.getPlannedConsumption());
+        return entity;
+    }
+
+    public static FileUploadEntity getStaticFileEntity() {
+        final var entity = new FileUploadEntity();
+        entity.setUrl(STATIC);
         return entity;
     }
 }

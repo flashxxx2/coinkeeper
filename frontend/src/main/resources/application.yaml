@@ -4,8 +4,8 @@ spring:
       client:
         registration:
           keycloak:
-            client-id: frontend
-            client-secret: 0c35f0a7-866d-45a8-afb4-7a8afade8b17
+            client-id: coinkeeper
+            client-secret: a5301bb0-7017-48c1-ad44-ea85d32942d1
             clientName: Keycloak
             authorization-grant-type: authorization_code
             redirectUriTemplate: '{baseUrl}/login/oauth2/code/{registrationId}'
@@ -47,6 +47,7 @@ n2o:
       url: http://localhost:8888
 server:
   port: 9999
+
 coinkeeper:
   backend:
     url: http://localhost:8888

@@ -18,14 +18,16 @@ public class AnaliticsService {
         this.repository = repository;
     }
 
-    public AnaliticsDto getUserAnalitics(Long userId) {
-        return Optional.of(Mapper.toDtoAnalitics(repository.getAnaliticsEntitiesByUserId(userId))).orElse(new AnaliticsDto(
+    public AnaliticsDto getUserAnalitics(String userName) {
+
+        return Mapper.toDtoAnalitics(repository.getAnaliticsEntitiesByUserName(userName).orElse(new AnaliticsEntity(
                 null,
+                userName,
                 0L,
                 0L,
                 0L,
                 BigDecimal.ZERO,
-                "Неопределенная категория"));
+                "Неопределенная категория")));
     }
 
     public AnaliticsEntity save(AnaliticsDto analiticsDto) {
@@ -33,13 +35,12 @@ public class AnaliticsService {
     }
 
     public AnaliticsEntity update(AnaliticsDto analiticsDto) {
-        final var entity = repository.getAnaliticsEntitiesByUserId(analiticsDto.getId());
+        final var entity = repository.getAnaliticsEntitiesById(analiticsDto.getId());
         entity.setPlannedConsumption(analiticsDto.getPlannedConsumption());
         entity.setBalance(analiticsDto.getBalance());
         entity.setExpensivePurchase(analiticsDto.getExpensivePurchase());
         entity.setFactConsumption(analiticsDto.getFactConsumption());
         entity.setConsumptionCategory(analiticsDto.getConsumptionCategory());
-        entity.setUserId(1L);
         return repository.save(entity);
     }
 }

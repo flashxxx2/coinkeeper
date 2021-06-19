@@ -36,8 +36,8 @@ public class PaymentEntity {
     private CategoryEntity category;
 
     @JsonProperty()
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "user_name")
+    private String userName;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

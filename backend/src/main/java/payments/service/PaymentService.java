@@ -10,6 +10,7 @@ import payments.criteria.PaymentCriteria;
 import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
 import payments.entity.FileUploadEntity;
+import payments.entity.PaymentEntity;
 import payments.mapper.Mapper;
 import payments.repository.CategoryRepository;
 import payments.repository.MediaRepository;
@@ -17,6 +18,7 @@ import payments.repository.PaymentRepository;
 import payments.repository.PaymentSpecification;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,10 +33,10 @@ public class PaymentService {
     private final MediaRepository mediaRepository;
 
     @Transactional
-    public PaymentDto savePayment(PaymentDto paymentDto) {
-        var paymentEntity = toEntity(paymentDto);
+    public PaymentDto savePayment(PaymentDto paymentDto, String userName) {
+        var paymentEntity = toEntity(paymentDto, userName);
         paymentRepository.save(paymentEntity);
-        if (!paymentDto.getFileUpload().isEmpty()) {
+        if (paymentDto.getFileUpload() != null) {
             List<FileUploadEntity> files = toEntityListFileUpload(paymentDto.getFileUpload()).stream()
                     .peek(file -> file.setPayment(paymentEntity))
                     .collect(Collectors.toList());
@@ -48,7 +50,8 @@ public class PaymentService {
     }
 
     @Transactional
-    public Page<PaymentDto> findPayments(PaymentCriteria criteria) {
+    public Page<PaymentDto> findPayments(PaymentCriteria criteria, String userName) {
+        criteria.setUserName(userName);
         return paymentRepository
                 .findAll(new PaymentSpecification(criteria), PageRequest.of(criteria.getPageNumber(), criteria.getPageSize(), criteria.getSort()))
                 .map(Mapper::toDto);

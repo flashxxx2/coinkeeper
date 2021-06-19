@@ -32,14 +32,14 @@ services:
       - POSTGRES_PASSWORD=pass
     volumes:
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
-#  gateway:
-#    image: gateway
-#    build: security/gateway
-#    ports:
-#      - 7777:80
-#    # docker 20+
-#    extra_hosts:
-#      - "host.docker.internal:host-gateway"
+  gateway:
+    image: gateway
+    build: gateway
+    ports:
+      - 7777:80
+    # docker 20+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   postgres:
     container_name: postgres
     image: library/postgres
@@ -61,7 +61,7 @@ services:
       DB_USER: app
       DB_PASSWORD: pass
       KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin_password
+      KEYCLOAK_PASSWORD: admin
     ports:
       - "8484:8080"
     depends_on:

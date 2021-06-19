@@ -3,16 +3,13 @@ package payments.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import payments.criteria.PaymentCriteria;
 import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
-import payments.entity.UserEntity;
 import payments.service.PaymentService;
 
-import javax.ws.rs.*;
-import java.security.Principal;
+import javax.ws.rs.BeanParam;
 import java.util.List;
 
 @RestController
@@ -23,8 +20,9 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping
-    public PaymentDto savePayment(@RequestBody PaymentDto paymentDto) {
-        return paymentService.savePayment(paymentDto);
+    public PaymentDto savePayment(@RequestBody PaymentDto paymentDto, @RequestHeader("X-Profile") String userName) {
+
+        return paymentService.savePayment(paymentDto, userName);
     }
 
     @PutMapping("/{id}")
@@ -38,9 +36,8 @@ public class PaymentController {
     }
 
     @GetMapping
-    public Page<PaymentDto> getAllPayments(@BeanParam PaymentCriteria criteria, Principal authentication) {
-        criteria.setUserId(((UserEntity) ((UsernamePasswordAuthenticationToken) authentication).getPrincipal()).getId());
-        return paymentService.findPayments(criteria);
+    public Page<PaymentDto> getAllPayments(@BeanParam PaymentCriteria criteria, @RequestHeader("X-Profile") String userName) {
+        return paymentService.findPayments(criteria, userName);
     }
 
     @GetMapping("/{id}")
