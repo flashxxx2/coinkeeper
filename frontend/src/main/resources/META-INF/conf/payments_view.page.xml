@@ -10,7 +10,7 @@
                 </fields>
             </form>
             <tiles id="imageTiles" query-id="paymentImages" depends-on="paymentsForm" detail-field-id="id"
-                   height="200" width="200" name="Фотографии">
+                   height="300" width="300" name="Фотографии">
                 <pagination/>
                 <content>
                     <block text-field-id="url">

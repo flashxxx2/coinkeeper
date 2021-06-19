@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS payment_statistic (
 
 CREATE TABLE IF NOT EXISTS files (
                        id BIGSERIAL NOT NULL,
-                       file_name character varying COLLATE pg_catalog."default" NOT NULL,
+                       file_name varchar,
                        url character varying COLLATE pg_catalog."default" NOT NULL,
                        payment_id bigint,
                        CONSTRAINT payment_id_fk FOREIGN KEY (payment_id)

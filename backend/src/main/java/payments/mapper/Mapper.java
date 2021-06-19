@@ -85,7 +85,7 @@ public class Mapper {
         if (!paymentEntity.getPaymentFiles().isEmpty()) {
             paymentDto.setFileUpload(toDtoListFileUpload(paymentEntity.getPaymentFiles()));
         } else
-            paymentDto.setFileUpload(toDtoListFileUpload(Collections.singletonList(getStaticFileEntity())));
+            paymentDto.setFileUpload(toDtoListFileUpload(getStaticFileEntity()));
         return paymentDto;
     }
 
@@ -118,9 +118,12 @@ public class Mapper {
         return entity;
     }
 
-    public static FileUploadEntity getStaticFileEntity() {
+    public static List<FileUploadEntity> getStaticFileEntity() {
         final var entity = new FileUploadEntity();
         entity.setUrl(STATIC);
-        return entity;
+        entity.setId(234L);
+        entity.setName("default");
+        entity.setPayment(new PaymentEntity());
+        return Collections.singletonList(entity);
     }
 }

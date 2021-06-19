@@ -10,6 +10,9 @@ import java.util.UUID;
 @EqualsAndHashCode
 @ToString
 public class FileUploadDto {
+    public FileUploadDto(String url) {
+        this.url = url;
+    }
 
     private Long id;
     private String url;

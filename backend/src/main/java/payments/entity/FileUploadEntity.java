@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Data
 @Table(name = "files")
 public class FileUploadEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false, nullable = false)
