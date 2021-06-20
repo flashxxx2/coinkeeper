@@ -24,7 +24,7 @@ public class WebApplication {
     public RestTemplateBuilder restTemplate() {
         return new RestTemplateBuilder()
                 .interceptors((request, body, execution) -> {
-                    request.getHeaders().set("X-Profile", ((DefaultOidcUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getName());
+                    request.getHeaders().set("X-Profile", ((DefaultOidcUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getName());
                     return execution.execute(request, body);
                 });
 

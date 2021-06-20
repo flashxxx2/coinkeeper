@@ -14,6 +14,6 @@ public class AnaliticsDto {
     private Long balance;
     private Long plannedConsumption;
     private Long factConsumption;
-    private BigDecimal expensivePurchase;
+    private Long expensivePurchase;
     private String consumptionCategory;
 }

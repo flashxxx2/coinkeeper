@@ -24,7 +24,7 @@ public class AnaliticsController {
     }
 
     @PutMapping("/update")
-    private AnaliticsEntity updateAnalitics(@RequestBody AnaliticsDto analiticsDto) {
-        return service.update(analiticsDto);
+    private AnaliticsEntity updateAnalitics(@RequestBody AnaliticsDto analiticsDto, @RequestHeader("X-Profile") String userName) {
+        return service.update(analiticsDto, userName);
     }
 }

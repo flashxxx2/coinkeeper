@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import payments.criteria.PaymentCriteria;
 import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
+import payments.dto.UserDto;
 import payments.service.PaymentService;
 
 import javax.ws.rs.BeanParam;
@@ -31,8 +32,8 @@ public class PaymentController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletePayment(@PathVariable Long id) {
-        paymentService.deletePayment(id);
+    public void deletePayment(@PathVariable Long id, @RequestHeader("X-Profile") String userName) {
+        paymentService.deletePayment(id, userName);
     }
 
     @GetMapping
@@ -48,5 +49,14 @@ public class PaymentController {
     @GetMapping("/category")
     public List<CategoryDto> getPaymentCategory() {
         return paymentService.getCategory();
+    }
+
+    @GetMapping("/user")
+    public UserDto getUSer(@RequestHeader("X-Profile") String userName) {
+        String user2 = userName;
+        final var user = new UserDto();
+            user.setUserName(user2);
+            user.setId(123L);
+        return user;
     }
 }

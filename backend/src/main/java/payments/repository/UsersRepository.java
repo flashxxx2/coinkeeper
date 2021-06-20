@@ -8,6 +8,7 @@ import payments.entity.UserEntity;
 import java.util.Optional;
 
 public interface UsersRepository extends JpaRepository<UserEntity, Long> {
+
     @Query(value = "select * from users where username = :username", nativeQuery = true)
     Optional<UserEntity> findByUsername(@Param("username") String username);
 }

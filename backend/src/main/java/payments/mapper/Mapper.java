@@ -11,7 +11,6 @@ import payments.entity.PaymentEntity;
 import payments.models.FileModel;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,8 +83,7 @@ public class Mapper {
         paymentDto.setComment(paymentEntity.getComment());
         if (!paymentEntity.getPaymentFiles().isEmpty()) {
             paymentDto.setFileUpload(toDtoListFileUpload(paymentEntity.getPaymentFiles()));
-        } else
-            paymentDto.setFileUpload(toDtoListFileUpload(getStaticFileEntity()));
+        }
         return paymentDto;
     }
 
@@ -116,14 +114,5 @@ public class Mapper {
         entity.setId(dto.getId());
         entity.setPlannedConsumption(dto.getPlannedConsumption());
         return entity;
-    }
-
-    public static List<FileUploadEntity> getStaticFileEntity() {
-        final var entity = new FileUploadEntity();
-        entity.setUrl(STATIC);
-        entity.setId(234L);
-        entity.setName("default");
-        entity.setPayment(new PaymentEntity());
-        return Collections.singletonList(entity);
     }
 }

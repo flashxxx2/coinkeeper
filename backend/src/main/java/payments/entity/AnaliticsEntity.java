@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @AllArgsConstructor
@@ -36,7 +35,7 @@ public class AnaliticsEntity {
 
     @JsonProperty
     @Column(name = "expensive_purchase")
-    private BigDecimal expensivePurchase;
+    private Long expensivePurchase;
 
     @JsonProperty
     @Column(name = "consumption_category")

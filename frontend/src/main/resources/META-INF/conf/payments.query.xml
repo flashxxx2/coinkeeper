@@ -12,10 +12,10 @@
     </unique>
 
     <fields>
-        <field id="id" domain="long">
+        <field id="id">
             <select mapping="['id']"/>
             <filters>
-                <eq filter-id="id"/>
+                <eq filter-id="id">id={id}</eq>
             </filters>
         </field>
 
