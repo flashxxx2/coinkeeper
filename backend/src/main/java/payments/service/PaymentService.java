@@ -2,6 +2,7 @@ package payments.service;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -103,6 +104,7 @@ public class PaymentService {
         return toDto(paymentRepository.save(entity));
     }
 
+    @Cacheable(value = "itemCache")
     public PaymentDto getPaymentById(Long id) {
         return toDto(paymentRepository.getOne(id));
     }

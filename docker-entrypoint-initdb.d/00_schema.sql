@@ -45,22 +45,24 @@ INSERT INTO payment_category (id, name) VALUES (1, 'Продукты'), (2, 'Т�
                                                (7, 'Неопределенная категория');
 
 INSERT INTO payment_statistic (created_dt, sum, category_id, comment, user_name) VALUES
-('1999-12-03', 123, 1, 'Хлебушек из пятерочки', 'user'),
+('2001-12-03', 123, 1, 'Хлебушек из пятерочки', 'user'),
 ('2005-12-03', 145, 2, 'На автобус', 'user'),
 ('2000-12-03', 1456, 3, 'Тусовка с друзьями', 'user'),
-('2020-12-03', 141, 5, 'Коммуналка', 'user'),
-('2020-11-03', 23, 2, 'Чупа Чупс купил', 'user'),
-('2020-10-03', 143, 3, 'Семки у бабули', 'user');
+('2020-12-03', 141, 6, 'Коммуналка', 'user'),
+('2021-06-03', 23, 4, 'Чупа Чупс купил', 'user'),
+('2021-06-03', 143, 5, 'Семки у бабули', 'user');
 
 INSERT INTO analitics(user_name, balance, planned_consumption, fact_consumption, expensive_purchase, consumption_category) VALUES
 ('user', 10000, 9000, 2000, 700, 'Развлечения');
 
 INSERT INTO files (file_name, url, payment_id) VALUES
-('Сбербанк', 'https://htstatic.imgsmail.ru/pic_image/da6085d65b979aee7a14087701fac5f1/840/564/1861289/', 1),
-('из кб пива купил', 'https://www.retail.ru/upload/medialibrary/a7f/chek-na-sluzhbe-marketinga-14_1.jpg', 2),
+('Хлеб', 'https://lh3.googleusercontent.com/proxy/0Z3qIcPGQ0LzZef2N3PJxd1129FzOIkR7fs21ZoWeNBAuC0TZTFlgqPxcJZODBi-ZtzWIa1ib6VR2GdbHNBk', 1),
+('на автобус до работы', 'https://aif-s3.aif.ru/images/006/881/3e1ae0a675e159a82d2faac531f5511b.jpg', 2),
 ('Пятерка', 'https://check.ofd.ru/assets/top-check.1d7181b.png', 3),
 ('хз', 'https://allcashbacks.com/web/uploads/new_uploads/2-chek.jpg', 3),
-('Tiffany', 'https://habrastorage.org/files/49d/d30/d33/49dd30d330f34d278e65d25d9084ad55.jpeg', 4);
+('ЖКХ', 'https://чкаловский.екатеринбург.рф/media/news/news_55654_image_900x_.jpg', 4),
+('Семки', 'https://st2.depositphotos.com/4203211/8303/i/600/depositphotos_83030796-stock-photo-woman-holds-fresh-sunflower-seeds.jpg', 6),
+('Чупик', 'http://pngimg.com/uploads/chupa_chups/small/chupa_chups_PNG4.png', 5);
 
 
 

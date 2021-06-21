@@ -10,18 +10,18 @@ services:
       args:
         JAR_FILE: backend/target/backend-1.0.jar
     ports:
-      - 8081:7777
+      - 8888:8888
     depends_on:
       - db
   frontend:
     environment:
-      N2O_ENGINE_REST_URL: http://backend:8081
+      N2O_ENGINE_REST_URL: http://backend:8888
     build:
       context: frontend
       args:
-        JAR_FILE: frontend/target/frontend-1.0-jar-with-dependencies.jar
+        JAR_FILE: frontend/target/frontend-1.0.jar
     ports:
-      - 8080:9999
+      - 9999:9999
   db:
     image: postgres
     ports:
@@ -61,10 +61,17 @@ services:
       DB_USER: app
       DB_PASSWORD: pass
       KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_PASSWORD: admin_password
     ports:
       - "8484:8080"
     depends_on:
       - postgres
     links:
       - "postgres:postgres"
+  cache:
+    image: redis:6-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
