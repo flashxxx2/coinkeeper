@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-4.0"
+       object-id="graph">
+
+    <list count-mapping="#this.size()">
+        <rest method="GET"
+              filters-separator="&amp;">/analitics/getConsumptionGraph
+        </rest>
+    </list>
+
+    <fields>
+        <field id="id" domain="long">
+            <select mapping="['id']"/>
+            <filters>
+                <eq filter-id="id"/>
+            </filters>
+        </field>
+        <field id="name">
+            <select/>
+        </field>
+        <field id="consumptionInMonth" name="Расходы по месяцам">
+            <select/>
+        </field>
+    </fields>
+</query>

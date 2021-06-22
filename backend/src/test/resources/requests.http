@@ -36,3 +36,9 @@ X-USER-PROFILE: 1
 ###
 GET http://localhost:8888/payments/1
 
+###
+GET http://localhost:8888/analitics/getConsumptionGraph
+
+###
+GET http://localhost:8888/analitics/getCategoryGraph
+X-Profile: user

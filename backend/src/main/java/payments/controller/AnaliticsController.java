@@ -2,9 +2,13 @@ package payments.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import payments.dto.AnaliticsCategoryDto;
+import payments.dto.AnaliticsConsumptionDto;
 import payments.dto.AnaliticsDto;
 import payments.entity.AnaliticsEntity;
 import payments.service.AnaliticsService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/analitics")
@@ -16,6 +20,16 @@ public class AnaliticsController {
     @GetMapping
     private AnaliticsDto getAnalitics(@RequestHeader("X-Profile") String userName) {
         return service.getUserAnalitics(userName);
+    }
+
+    @GetMapping("/getCategoryGraph")
+    private List<AnaliticsCategoryDto> getCategoryGraph(@RequestHeader("X-Profile") String userName) {
+        return service.getCategoryGraph(userName);
+    }
+
+    @GetMapping("/getConsumptionGraph")
+    private List<AnaliticsConsumptionDto> getConsumptionGraph(@RequestHeader("X-Profile") String userName) {
+        return service.getConsumptionGraph(userName);
     }
 
     @PostMapping("/save")

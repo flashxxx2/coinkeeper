@@ -3,6 +3,7 @@ package payments.service;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,7 @@ public class MediaService {
             MediaType.IMAGE_JPEG_VALUE, ".jpg"
     );
 
+    @Cacheable(value = "itemCache")
     public InputStream getImage(String path) {
         try {
             return FileUtils.openInputStream
@@ -68,6 +70,7 @@ public class MediaService {
                 entity.getUrl())).collect(Collectors.toList());
     }
 
+    @Cacheable(value = "itemCache")
     public List<FileModel> getPaymentImages(Long id) {
         final var entity = Optional.ofNullable(paymentRepository.getById(id))
                 .orElseThrow(PaymentNotFoundException::new);

@@ -3,6 +3,29 @@
       name="Сервис контролирования расходов">
     <regions>
         <region>
+            <form query-id="profile">
+                <toolbar place="topRight">
+                    <button id="consumptionGraph" label="График расходов по месяцам" color="danger">
+                        <open-page page-id="graph" master-field-id="id" detail-field-id="id"
+                                   page-name="График расходов по месяцам"
+                                   route="/analitics/getConsumptionGraph"/>
+                    </button>
+                </toolbar>
+            </form>
+        </region>
+        <region>
+            <form query-id="profile">
+                <toolbar place="topRight">
+                    <button id="categoryGraph" label="График расходов по категориям" color="danger">
+                        <open-page page-id="graphCategory"
+                                   page-name="График расходов по категориям"
+                                   route="/analitics/getCategoryGraph"/>
+                    </button>
+                </toolbar>
+            </form>
+        </region>
+
+        <region>
             <form query-id="analitics">
                 <fields>
                     <line label="Баланс">
@@ -10,7 +33,8 @@
                         </input-money>
                     </line>
                     <line label="Информация о расходах">
-                        <input-money id="plannedConsumption" label="Ваш плановый расход на текущий месяц:">Ваш плановый расход на текущий месяц составляет:
+                        <input-money id="plannedConsumption" label="Ваш плановый расход на текущий месяц:">Ваш плановый
+                            расход на текущий месяц составляет:
                             <dependencies>
                                 <enabling on="changeConsumptionEnabled">
                                     <![CDATA[
@@ -25,15 +49,16 @@
                             </dependencies>
                         </input-money>
                         <text id="consumptionText" no-label="true">Изменить</text>
-                        <checkbox id="changeConsumptionEnabled" src="Switch"
+                        <checkbox id="changeConsumptionEnabled" label="Изменить плановый расход" src="Switch"
                                   style="margin-top: -30px;"/>
                         <input-money id="factConsumption" label="Ваш фактический расход на текущий месяц:"
                                      suffix="руб" thousands-separator=" " decimal-separator=" "
-                        enabled="false"/>
+                                     enabled="false"/>
                     </line>
 
                     <line label="Данные о покупках">
-                        <input-money id="expensivePurchase" label="Самая дорогая покупка в этом месяце:" suffix="руб" thousands-separator=" " decimal-separator=" "
+                        <input-money id="expensivePurchase" label="Самая дорогая покупка в этом месяце:" suffix="руб"
+                                     thousands-separator=" " decimal-separator=" "
                                      enabled="false"/>
                         <output-text id="consumptionCategory" label="Наибольший расход в этом месяце по категории:"/>
                     </line>

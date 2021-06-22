@@ -3,7 +3,7 @@
        object-id="profile">
 
     <unique>
-        <rest>/user</rest>
+        <rest>/user/user</rest>
     </unique>
 
     <fields>
@@ -12,10 +12,6 @@
             <filters>
                 <eq filter-id="id"/>
             </filters>
-        </field>
-
-        <field id="userName" domain="string">
-            <select mapping="['userName']"/>
         </field>
     </fields>
 </query>

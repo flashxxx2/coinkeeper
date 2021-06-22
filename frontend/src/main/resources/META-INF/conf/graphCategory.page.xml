@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<simple-page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
+             name="Круговая диаграмма">
+    <chart width="730" height="250" query-id="graphCategory">
+        <pie center-x="150" center-y="150" inner-radius="50" outer-radius="100"
+             name-field-id="name" value-field-id="value" color="#82ca9d" has-label="true"/>
+    </chart>
+</simple-page>
