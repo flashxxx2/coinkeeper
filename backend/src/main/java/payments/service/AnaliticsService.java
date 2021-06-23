@@ -2,6 +2,7 @@ package payments.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import payments.dto.AnaliticsCategoryDto;
 import payments.dto.AnaliticsConsumptionDto;
 import payments.dto.AnaliticsDto;
@@ -12,6 +13,7 @@ import payments.repository.AnaliticsRepository;
 import payments.repository.CategoryRepository;
 import payments.repository.PaymentRepository;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Validated
 @Transactional
 public class AnaliticsService {
 
@@ -64,11 +67,11 @@ public class AnaliticsService {
                 "Неопределенная категория")));
     }
 
-    public AnaliticsEntity save(AnaliticsDto analiticsDto) {
+    public AnaliticsEntity save(@Valid AnaliticsDto analiticsDto) {
         return repository.save(Mapper.toEntityAnalitics(analiticsDto));
     }
 
-    public AnaliticsEntity update(AnaliticsDto analiticsDto, String userName) {
+    public AnaliticsEntity update(@Valid AnaliticsDto analiticsDto, String userName) {
         var entity = repository.getAnaliticsEntitiesById(analiticsDto.getId());
         if (entity == null) {
             entity = new AnaliticsEntity();

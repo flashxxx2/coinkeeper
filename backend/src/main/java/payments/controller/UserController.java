@@ -17,7 +17,6 @@ public class UserController {
     public UserDto getUSer(@RequestHeader("X-Profile") String userName) {
         final var user = new UserDto();
             user.setUserName(userName);
-//            user.setId(123L);
         return user;
     }
 }

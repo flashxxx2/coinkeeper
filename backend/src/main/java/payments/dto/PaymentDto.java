@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,11 +16,19 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class PaymentDto {
+    @Min(1)
     private Long id;
+
+    @NotNull
     private LocalDateTime createdTime;
+
+    @NotNull
     private Long sum;
+
+    @NotNull
     private CategoryDto category;
+
     private String comment;
-    private List<FileUploadDto> fileUpload;
+    private List<@Valid FileUploadDto> fileUpload;
     private String info;
 }

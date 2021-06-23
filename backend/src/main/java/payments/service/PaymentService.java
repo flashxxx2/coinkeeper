@@ -17,6 +17,7 @@ import payments.entity.PaymentEntity;
 import payments.mapper.Mapper;
 import payments.repository.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -41,7 +42,7 @@ public class PaymentService {
 
 
     @Transactional
-    public PaymentDto savePayment(PaymentDto paymentDto, String userName) {
+    public PaymentDto savePayment(@Valid PaymentDto paymentDto, String userName) {
         var paymentEntity = toEntity(paymentDto, userName);
 //        try {
 //            analiticsRepository.getUserPlannedConsumption()
@@ -91,7 +92,7 @@ public class PaymentService {
     }
 
     @Transactional
-    public PaymentDto updatePayment(PaymentDto paymentDto) {
+    public PaymentDto updatePayment(@Valid PaymentDto paymentDto) {
         var entity = paymentRepository.getById(paymentDto.getId());
         entity.setCreatedTime(LocalDateTime.now());
         entity.setSum(paymentDto.getSum());

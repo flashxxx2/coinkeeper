@@ -37,6 +37,7 @@ public class PaymentController {
     }
 
     @GetMapping
+    @ResponseBody
     public Page<PaymentDto> getAllPayments(@BeanParam PaymentCriteria criteria, @RequestHeader("X-Profile") String userName) {
         return paymentService.findPayments(criteria, userName);
     }

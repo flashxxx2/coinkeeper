@@ -75,5 +75,17 @@
                 </toolbar>
             </form>
         </region>
+<!--        <region>-->
+<!--                <form query-id="files">-->
+<!--                    <fields>-->
+<!--                        <file-upload label="Загрузка файлов" id="files" multi="true"-->
+<!--                                     label-field-id="fileName" value-field-id="id" url-field-id="url"-->
+<!--                                     upload-url="/sandbox/files"-->
+<!--                                     delete-url="/sandbox/files"-->
+<!--                                     accept=".img,.png,.xml"-->
+<!--                        />-->
+<!--                    </fields>-->
+<!--                </form>-->
+<!--        </region>-->
     </regions>
 </page>
