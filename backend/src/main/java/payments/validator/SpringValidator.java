@@ -7,7 +7,7 @@ import org.springframework.validation.Validator;
 import payments.entity.CategoryEntity;
 
 @Component
-public class SpringTaskValidator implements Validator {
+public class SpringValidator implements Validator {
 
   @Override
   public boolean supports(Class<?> clazz) {
@@ -22,8 +22,8 @@ public class SpringTaskValidator implements Validator {
         "name.empty"
     );
 
-    CategoryEntity task = (CategoryEntity) o;
-    if (task.getName().length() < 5) {
+    CategoryEntity entity = (CategoryEntity) o;
+    if (entity.getName().length() < 5) {
       errors.rejectValue("category", "category.too.short");
     }
   }
