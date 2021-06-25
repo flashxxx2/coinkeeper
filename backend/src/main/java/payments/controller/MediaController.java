@@ -5,8 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import payments.models.FileModel;
-import payments.service.FilesService;
-import payments.service.MediaService;
+import payments.service.api.FilesService;
+import payments.service.api.MediaService;
 
 import java.util.List;
 

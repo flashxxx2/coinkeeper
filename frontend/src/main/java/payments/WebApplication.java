@@ -1,6 +1,5 @@
 package payments;
 
-import lombok.extern.slf4j.Slf4j;
 import org.mitre.dsmiley.httpproxy.ProxyServlet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -42,5 +41,4 @@ public class WebApplication {
         bean.setInitParameters(params);
         return bean;
     }
-
 }

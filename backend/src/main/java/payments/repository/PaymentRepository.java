@@ -8,8 +8,12 @@ import org.springframework.data.repository.query.Param;
 import payments.entity.PaymentEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PaymentRepository extends JpaRepository<PaymentEntity, Long>, JpaSpecificationExecutor<PaymentEntity> {
+
+    @Override
+    Optional<PaymentEntity> findById(Long id);
 
     PaymentEntity getById(Long id);
 

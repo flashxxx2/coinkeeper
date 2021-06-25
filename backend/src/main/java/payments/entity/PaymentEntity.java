@@ -40,7 +40,7 @@ public class PaymentEntity {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy="payment", cascade = {
+    @OneToMany(mappedBy = "payment", cascade = {
             CascadeType.ALL})
     private List<FileUploadEntity> paymentFiles;
 

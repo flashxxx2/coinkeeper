@@ -1,44 +1,40 @@
-package payments.service;
+package payments.service.impl;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import payments.exception.PaymentImagesNotFoundException;
 import payments.exception.PaymentNotFoundException;
 import payments.mapper.Mapper;
 import payments.models.FileModel;
 import payments.repository.MediaRepository;
 import payments.repository.PaymentRepository;
+import payments.service.api.MediaService;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class MediaService {
+public class MediaServiceImpl implements MediaService {
 
     public final String uploadDir;
     private final PaymentRepository paymentRepository;
     private final MediaRepository mediaRepository;
 
-    public MediaService(@Value("${app.upload.dir:${user.home}}") String uploadDir, PaymentRepository paymentRepository, MediaRepository mediaRepository) {
+    public MediaServiceImpl(@Value("${app.upload.dir:${user.home}}") String uploadDir, PaymentRepository paymentRepository, MediaRepository mediaRepository) {
         this.uploadDir = uploadDir;
         this.paymentRepository = paymentRepository;
         this.mediaRepository = mediaRepository;
     }
 
-    private final Map<String, String> supportedMediaTypeExtensions = Map.of(
-            MediaType.IMAGE_PNG_VALUE, ".png",
-            MediaType.IMAGE_JPEG_VALUE, ".jpg"
-    );
-
+    @Override
     @Cacheable(value = "itemCache")
     public InputStream getImage(String path) {
         try {
@@ -50,6 +46,7 @@ public class MediaService {
         return null;
     }
 
+    @Override
     public byte[] uploadImage(Long id) {
         var file = getPaymentFile(id);
         InputStream content = getImage(file.get(0).getUrl());
@@ -61,8 +58,11 @@ public class MediaService {
         return null;
     }
 
-    private List<FileModel> getPaymentFile(Long id) {
-        var paymentEntity= paymentRepository.getById(id);
+    @Override
+    public List<FileModel> getPaymentFile(Long id) {
+        var paymentEntity= paymentRepository.findById(id)
+                .orElseThrow(PaymentNotFoundException::new);
+
         var fileUploadEntity = mediaRepository.findAllByPayment(paymentEntity);
         return fileUploadEntity.stream().map(entity -> new FileModel(
                 entity.getId(),
@@ -70,16 +70,19 @@ public class MediaService {
                 entity.getUrl())).collect(Collectors.toList());
     }
 
+    @Override
     @Cacheable(value = "itemCache")
     public List<FileModel> getPaymentImages(Long id) {
         final var entity = Optional.ofNullable(paymentRepository.getById(id))
-                .orElseThrow(PaymentNotFoundException::new);
+                .orElseThrow(PaymentImagesNotFoundException::new);
+
         return mediaRepository.findAllByPayment(entity)
                 .stream()
                 .map(Mapper::convertToFileModel)
                 .collect(Collectors.toList());
     }
 
+    @Override
     @Scheduled(cron = "0 22 * * * *")
     public void deleteUnMappedFiles() {
         mediaRepository.deleteUnMappedRows();

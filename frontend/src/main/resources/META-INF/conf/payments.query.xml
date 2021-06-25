@@ -31,6 +31,10 @@
             <select/>
         </field>
 
+        <field id="ids" domain="integer">
+            <select/>
+        </field>
+
         <field id="category" domain="object">
             <select/>
             <filters>

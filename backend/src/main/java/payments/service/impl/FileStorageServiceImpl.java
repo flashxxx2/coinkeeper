@@ -1,4 +1,4 @@
-package payments.service;
+package payments.service.impl;
 
 import lombok.Synchronized;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,33 +9,28 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import payments.models.FileModel;
+import payments.service.api.FileStorageService;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class FileStorageService {
+public class FileStorageServiceImpl implements FileStorageService {
     private Path path;
 
     private Map<Integer, FileModel> storage = new HashMap<>();
     private int id = 0;
 
-    public FileStorageService(@Value("${app.upload.dir:${user.home}}") String uploadDir) {
+    public FileStorageServiceImpl(@Value("${app.upload.dir:${user.home}}") String uploadDir) {
         path = Path.of(uploadDir);
         path.toFile().deleteOnExit();
     }
 
-    @SuppressWarnings("unused")
-    public Collection<FileModel> getList() {
-        return new ArrayList<>(storage.values());
-    }
-
+    @Override
     public void delete(Integer id) {
         if (id != null) {
             FileModel model = storage.remove(id);
@@ -50,6 +45,7 @@ public class FileStorageService {
         }
     }
 
+    @Override
     @Synchronized
     public FileModel storeFile(MultipartFile file) {
         try {
@@ -70,6 +66,7 @@ public class FileStorageService {
         }
     }
 
+    @Override
     public Resource loadFile(String fileName) {
         try {
             var filePath = path.resolve(fileName).normalize();

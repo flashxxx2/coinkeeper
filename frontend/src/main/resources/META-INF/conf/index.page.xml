@@ -29,9 +29,10 @@
                     </action>
                 </actions>
                 <columns>
-                    <column text-field-id="id" label="#"/>
+                    <column text-field-id="id" visible="false"/>
+                    <column text-field-id="ids" label="#"/>
                     <column text-field-id="createdTime" label="Дата расхода">
-                        <text format="date DD.MM.YYYY"/>
+<!--                        <text format="date DD.MM.YYYY"/>-->
                     </column>
                     <column text-field-id="sum" label="Сумма расхода(руб)">руб</column>
                     <column text-field-id="category.name" label="Категория"/>

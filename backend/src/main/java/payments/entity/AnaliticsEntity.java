@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @AllArgsConstructor
@@ -39,5 +40,6 @@ public class AnaliticsEntity {
 
     @JsonProperty
     @Column(name = "consumption_category")
+    @NotBlank(message = "Category is mandatory")
     private String consumptionCategory;
 }

@@ -36,7 +36,7 @@
                         <input-money id="plannedConsumption" label="Ваш плановый расход на текущий месяц:">Ваш плановый
                             расход на текущий месяц составляет:
                             <dependencies>
-                                <enabling on="changeConsumptionEnabled">
+                                <enabling on="changeConsumptionEnabled" apply-on-init="true">
                                     <![CDATA[
                                         if ((typeof changeConsumptionEnabled !== 'undefined' && changeConsumptionEnabled !== false)
                                         ) {
@@ -50,7 +50,7 @@
                         </input-money>
                         <text id="consumptionText" no-label="true">Изменить</text>
                         <checkbox id="changeConsumptionEnabled" label="Изменить плановый расход" src="Switch"
-                                  style="margin-top: -30px;"/>
+                                  style="margin-top: -30px;" default-value="false"/>
                         <input-money id="factConsumption" label="Ваш фактический расход на текущий месяц:"
                                      suffix="руб" thousands-separator=" " decimal-separator=" "
                                      enabled="false"/>

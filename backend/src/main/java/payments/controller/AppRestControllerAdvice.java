@@ -5,24 +5,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import payments.exception.PaymentNotFoundException;
+import payments.exception.PaymentImagesNotFoundException;
 
 import java.util.Map;
 
 @RestControllerAdvice
 public class AppRestControllerAdvice {
-  @ExceptionHandler // TODO: replace map with DTO
-  public ResponseEntity<Map<String, Object>> handleApplicationException(PaymentNotFoundException e) {
-    // TODO:
-    //  1. Status code
-    //  2. Application error code -> "err.not_enough_balance"
-    // TODO: get status from exception
-    return ResponseEntity.status(400).body(Map.of("code", "err..."));
+  @ExceptionHandler
+  public ResponseEntity<Map<String, Object>> handleApplicationException(PaymentImagesNotFoundException e) {
+    return ResponseEntity.status(400).body(Map.of("code", "Something wrong"));
   }
 
   @ExceptionHandler
-  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  @ResponseStatus(HttpStatus.UNAUTHORIZED)
   public Map<String, Object> handleException(Exception e) {
-    return Map.of("code", "err.unknown");
+    return Map.of("code", "Do you wanna hack me?");
   }
 }

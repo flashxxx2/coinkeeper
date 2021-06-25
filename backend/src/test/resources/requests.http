@@ -26,15 +26,16 @@ Authorization: Basic user pass
 Content-Type: image/jpeg
 
 ###
-POST http://localhost:7777/api/demo/do-stuff
-Authorization: secret-token
+GET http://localhost:8888/payments
+X-Profile: user
 
 ###
 GET http://localhost:8888/analitics
-X-USER-PROFILE: 1
+X-Profile: user
 
 ###
 GET http://localhost:8888/payments/1
+X-Profile: user
 
 ###
 GET http://localhost:8888/analitics/getConsumptionGraph

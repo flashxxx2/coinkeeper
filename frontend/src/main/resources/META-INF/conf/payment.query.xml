@@ -32,5 +32,13 @@
         <field id="fileUpload" domain="object">
             <select/>
         </field>
+
+        <field id="createdTime" domain="localdatetime">
+            <select/>
+        </field>
+
+        <field id="info" domain="string">
+            <select mapping="['info']"/>
+        </field>
     </fields>
 </query>

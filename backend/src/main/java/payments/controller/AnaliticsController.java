@@ -6,7 +6,7 @@ import payments.dto.AnaliticsCategoryDto;
 import payments.dto.AnaliticsConsumptionDto;
 import payments.dto.AnaliticsDto;
 import payments.entity.AnaliticsEntity;
-import payments.service.AnaliticsService;
+import payments.service.api.AnaliticsService;
 
 import java.util.List;
 

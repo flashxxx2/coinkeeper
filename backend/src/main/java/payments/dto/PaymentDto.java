@@ -4,8 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.redis.core.RedisHash;
+import payments.models.ErrorModelInfo;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -29,6 +30,7 @@ public class PaymentDto {
     private CategoryDto category;
 
     private String comment;
-    private List<@Valid FileUploadDto> fileUpload;
-    private String info;
+    private List<FileUploadDto> fileUpload;
+
+    private List<ErrorModelInfo> info;
 }

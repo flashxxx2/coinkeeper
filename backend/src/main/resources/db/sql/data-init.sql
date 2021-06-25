@@ -1,60 +1,69 @@
--- CREATE TABLE payment_category (
---                                   id BIGSERIAL NOT NULL,
---                                   name character varying COLLATE pg_catalog."default" NOT NULL,
---                                   CONSTRAINT payment_category_id_pk PRIMARY KEY (id));
---
--- CREATE TABLE users (
---                        id BIGSERIAL NOT NULL,
---                        username varchar NOT NULL,
---                        password varchar NOT NULL,
---                        CONSTRAINT users_id_pk PRIMARY KEY (id)
--- );
---
--- CREATE TABLE files (
---                        id integer NOT NULL,
---                        file_name character varying COLLATE pg_catalog."default" NOT NULL,
---                        url character varying COLLATE pg_catalog."default" NOT NULL,
---                        CONSTRAINT files_id_pk PRIMARY KEY (id)
--- );
---
--- CREATE TABLE payment_statistic (
---                                    id BIGSERIAL NOT NULL,
---                                    created_dt timestamp without time zone NOT NULL,
---                                    sum numeric(12,2) NOT NULL,
---                                    category_id bigint NOT NULL,
---                                    comment varchar,
---                                    file_id integer,
---                                    user_id bigint NOT NULL,
---                                    CONSTRAINT payments_category_id_fk FOREIGN KEY (category_id)
---                                        REFERENCES public.payment_category (id) MATCH SIMPLE
---                                        ON UPDATE RESTRICT
---                                        ON DELETE RESTRICT,
---                                    CONSTRAINT files_id_fk FOREIGN KEY (file_id)
---                                        REFERENCES public.files (id) MATCH SIMPLE
---                                        ON UPDATE RESTRICT
---                                        ON DELETE RESTRICT,
---                                    CONSTRAINT users_id_fk FOREIGN KEY (user_id)
---                                        REFERENCES public.users (id) MATCH SIMPLE
---                                        ON UPDATE RESTRICT
---                                        ON DELETE RESTRICT
--- );
---
+CREATE TABLE IF NOT EXISTS payment_category (
+                                                id BIGSERIAL NOT NULL,
+                                                name character varying COLLATE pg_catalog."default" NOT NULL,
+                                                CONSTRAINT payment_category_id_pk PRIMARY KEY (id));
+
+
+CREATE TABLE IF NOT EXISTS payment_statistic (
+                                                 id BIGSERIAL NOT NULL,
+                                                 created_dt timestamp without time zone NOT NULL,
+                                                 sum numeric(12,2) NOT NULL,
+                                                 category_id bigint NOT NULL,
+                                                 comment varchar,
+                                                 user_name varchar,
+                                                 CONSTRAINT payment_id_pk PRIMARY KEY (id),
+                                                 CONSTRAINT payments_category_id_fk FOREIGN KEY (category_id)
+                                                     REFERENCES public.payment_category (id) MATCH SIMPLE
+                                                     ON UPDATE RESTRICT
+                                                     ON DELETE RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS files (
+                                     id BIGSERIAL NOT NULL,
+                                     file_name varchar,
+                                     url character varying COLLATE pg_catalog."default" NOT NULL,
+                                     payment_id bigint,
+                                     CONSTRAINT payment_id_fk FOREIGN KEY (payment_id)
+                                         REFERENCES public.payment_statistic(id) MATCH SIMPLE
+                                         ON UPDATE RESTRICT
+                                         ON DELETE RESTRICT,
+                                     CONSTRAINT files_id_pk PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS analitics (
+                                         id BIGSERIAL NOT NULL,
+                                         user_name varchar,
+                                         balance bigint,
+                                         planned_consumption bigint,
+                                         fact_consumption bigint,
+                                         expensive_purchase bigint,
+                                         consumption_category varchar
+);
+
 -- INSERT INTO payment_category (id, name) VALUES (1, 'Продукты'), (2, 'Транспорт'), (3, 'Развлечения'),
---                                                (4, 'Романтика'), (5, 'Еда вне дома'), (6, 'Услуги');
+--                                                (4, 'Романтика'), (5, 'Еда вне дома'), (6, 'Услуги'),
+--                                                (7, 'Неопределенная категория');
 --
--- INSERT INTO users (username, password) VALUES ('user', '$2y$12$GmXGz3uWFWBFDJpxj/wQQuTg45KKCMhF1YqOgGP0cDYpvxxCOER4S');
+-- INSERT INTO payment_statistic (created_dt, sum, category_id, comment, user_name) VALUES
+-- ('2021-01-03', 123, 1, 'Хлебушек из пятерочки', 'user'),
+-- ('2021-02-03', 145, 2, 'На автобус', 'user'),
+-- ('2021-03-03', 1456, 3, 'Тусовка с друзьями', 'user'),
+-- ('2021-05-03', 141, 6, 'Коммуналка', 'user'),
+-- ('2021-04-03', 23, 4, 'Чупа Чупс купил', 'user'),
+-- ('2021-06-03', 143, 5, 'Семки у бабули', 'user');
 --
--- INSERT INTO files (id, file_name, url) VALUES
--- (1, 'Lich', 'C:\Users\amaximov\AppData\Local\Temp\upload13826495109969179102/lich.png'),
--- (2, 'Lich', 'C:\Users\amaximov\AppData\Local\Temp\upload13826495109969179102/lich.png'),
--- (3, 'Lich', 'C:\Users\amaximov\AppData\Local\Temp\upload13826495109969179102/lich.png');
+-- INSERT INTO analitics(user_name, balance, planned_consumption, fact_consumption, expensive_purchase, consumption_category) VALUES
+-- ('user', 10000, 9000, 2000, 700, 'Развлечения');
 --
--- INSERT INTO payment_statistic (created_dt, sum, category_id, comment, file_id, user_id) VALUES
--- ('1999-12-03T10:15:30', 123, 1, 'Хлебушек из пятерочки', 1, 1),
--- ('2005-12-03T10:15:30', 145, 2, 'На автобус', 2, 1),
--- ('2000-12-03T10:15:30', 1456, 3, 'Тусовка с друзьями', 3, 1),
--- ('2020-12-03T10:15:30', 14, 6, 'Коммуналка', 1, 1);
+-- INSERT INTO files (file_name, url, payment_id) VALUES
+-- ('Хлеб', 'https://chudo-povar.com/images/domashnij-xleb-v-duxovke.jpg', 1),
+-- ('на автобус до работы', 'https://aif-s3.aif.ru/images/006/881/3e1ae0a675e159a82d2faac531f5511b.jpg', 2),
+-- ('Пятерка', 'https://check.ofd.ru/assets/top-check.1d7181b.png', 3),
+-- ('хз', 'https://allcashbacks.com/web/uploads/new_uploads/2-chek.jpg', 3),
+-- ('ЖКХ', 'https://чкаловский.екатеринбург.рф/media/news/news_55654_image_900x_.jpg', 4),
+-- ('Семки', 'https://st2.depositphotos.com/4203211/8303/i/600/depositphotos_83030796-stock-photo-woman-holds-fresh-sunflower-seeds.jpg', 6),
+-- ('Чупик', 'http://pngimg.com/uploads/chupa_chups/small/chupa_chups_PNG4.png', 5);
 --
---
---
---
+
+
+

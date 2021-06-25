@@ -11,6 +11,8 @@
                 <param id="category"/>
                 <param id="comment"/>
                 <param id="fileUpload" mapping="['fileUpload']"/>
+                <param id="createdTime" mapping="['createdTime']"/>
+                <param id="info" mapping="['info']"/>
             </in-parameters>
             <out-parameters>
                 <param id="id"/>
@@ -26,7 +28,9 @@
                 <param id="sum"/>
                 <param id="category"/>
                 <param id="comment"/>
+                <param id="info" mapping="['info']"/>
                 <param id="fileUpload" mapping="['fileUpload']"/>
+                <param id="createdTime" mapping="['createdTime']"/>
             </in-parameters>
         </operation>
     </operations>

@@ -4,6 +4,7 @@ import lombok.Data;
 import payments.validator.TaskValidBeanConstraint;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -16,5 +17,6 @@ public class CategoryEntity {
     private Long id;
 
     @Size(min = 5, max = 20)
+    @NotBlank(message = "Category name is mandatory")
     private String name;
 }

@@ -3,6 +3,7 @@ package payments;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
 @EnableWebMvc
+//@EnableCaching
 @EnableScheduling
 public class Application {
     public static void main(String[] args) {
@@ -33,5 +35,4 @@ public class Application {
                         .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jacksonSerializer))
         );
     }
-
 }

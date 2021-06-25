@@ -56,7 +56,7 @@ INSERT INTO analitics(user_name, balance, planned_consumption, fact_consumption,
 ('user', 10000, 9000, 2000, 700, 'Развлечения');
 
 INSERT INTO files (file_name, url, payment_id) VALUES
-('Хлеб', 'https://lh3.googleusercontent.com/proxy/0Z3qIcPGQ0LzZef2N3PJxd1129FzOIkR7fs21ZoWeNBAuC0TZTFlgqPxcJZODBi-ZtzWIa1ib6VR2GdbHNBk', 1),
+('Хлеб', 'https://chudo-povar.com/images/domashnij-xleb-v-duxovke.jpg', 1),
 ('на автобус до работы', 'https://aif-s3.aif.ru/images/006/881/3e1ae0a675e159a82d2faac531f5511b.jpg', 2),
 ('Пятерка', 'https://check.ofd.ru/assets/top-check.1d7181b.png', 3),
 ('хз', 'https://allcashbacks.com/web/uploads/new_uploads/2-chek.jpg', 3),
