@@ -32,14 +32,6 @@ services:
       - POSTGRES_PASSWORD=pass
     volumes:
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
-#  gateway:
-#    image: gateway
-#    build: gateway
-#    ports:
-#      - 7777:80
-#    # docker 20+
-#    extra_hosts:
-#      - "host.docker.internal:host-gateway"
   postgres:
     container_name: postgres
     image: library/postgres

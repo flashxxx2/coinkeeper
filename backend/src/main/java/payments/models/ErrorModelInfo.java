@@ -3,8 +3,7 @@ package payments.models;
 
 import lombok.*;
 
-@Setter
-@Getter
+@Data
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor

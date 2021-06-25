@@ -1,28 +1,7 @@
-###
-POST http://localhost:8081/media/upload/photo
-Authorization: Basic user pass
-Content-Type: multipart/form-data; boundary=WebAppBoundary
 
---WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="../image.jpg"
-Content-Type: image/jpeg
-
-< ./lich.jpg
---WebAppBoundary--
-
-###
-GET http://localhost:7777/media/ru.png
-Authorization: Basic user pass
-Content-Type: image/jpeg
-
-
-###
-GET http://localhost:7777/media/lich.jpg
-Authorization: Basic user pass
-
-###
-GET http://localhost:7777/media/7/images
-Authorization: Basic user pass
+### Изображения не найдены
+GET http://localhost:8888/media/77/images
+X-Profile: user
 Content-Type: image/jpeg
 
 ###
@@ -33,13 +12,18 @@ X-Profile: user
 GET http://localhost:8888/analitics
 X-Profile: user
 
-###
+### Расход не найден
+GET http://localhost:8888/payments/112
+X-Profile: user
+
+### Кеш
 GET http://localhost:8888/payments/1
 X-Profile: user
 
-###
+### Кеш
+GET http://localhost:8888/payments/category
+X-Profile: user
+
+### Нет авторизации
 GET http://localhost:8888/analitics/getConsumptionGraph
 
-###
-GET http://localhost:8888/analitics/getCategoryGraph
-X-Profile: user

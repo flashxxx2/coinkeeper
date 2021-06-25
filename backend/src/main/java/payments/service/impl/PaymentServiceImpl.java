@@ -15,12 +15,12 @@ import payments.dto.PaymentDto;
 import payments.entity.FileUploadEntity;
 import payments.entity.PaymentEntity;
 import payments.exception.IllegalCoastPurchaseException;
+import payments.exception.PaymentNotFoundException;
 import payments.mapper.Mapper;
 import payments.models.ErrorModelInfo;
 import payments.repository.*;
 import payments.service.api.PaymentService;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -97,6 +97,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
+    @Cacheable(value = "itemCache")
     public List<CategoryDto> getCategory() {
         return categoryRepository.findAll()
                 .stream()
@@ -107,32 +108,42 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentDto updatePayment(PaymentDto paymentDto, String userName) {
         var entity = paymentRepository.getById(paymentDto.getId());
-        var analitics = analiticsRepository.getAnaliticsEntitiesByUserName(userName);
+        try {
+            if (paymentDto.getSum() > analiticsRepository.getBalance(userName)) {
+                throw new IllegalCoastPurchaseException();
+            }
 
-        final var difference = entity.getSum() - paymentDto.getSum();
+            var analitics = analiticsRepository.getAnaliticsEntitiesByUserName(userName);
+            final var difference = entity.getSum() - paymentDto.getSum();
 
-        if (analitics.isPresent()) {
-            final var balance = analitics.get().getBalance() + difference;
-            analitics.get().setBalance(balance);
+            if (analitics.isPresent()) {
+                final var balance = analitics.get().getBalance() + difference;
+                analitics.get().setBalance(balance);
+            }
+
+            analitics.ifPresent(analiticsRepository::save);
+
+            entity.setCreatedTime(paymentDto.getCreatedTime());
+            entity.setSum(paymentDto.getSum());
+            entity.setComment(paymentDto.getComment());
+            entity.setCategory(toEntityCategory(paymentDto.getCategory()));
+            if (!paymentDto.getFileUpload().isEmpty()) {
+                mediaRepository.saveAll(toEntityListFileUpload(paymentDto.getFileUpload()));
+            } else
+                mediaRepository.deleteByPaymentId(entity.getId());
+
+        } catch (IllegalCoastPurchaseException e) {
+            paymentDto.setInfo(getInfo(entity, "so.big.purchase"));
         }
 
-        analitics.ifPresent(analiticsRepository::save);
-
-        entity.setCreatedTime(paymentDto.getCreatedTime());
-        entity.setSum(paymentDto.getSum());
-        entity.setComment(paymentDto.getComment());
-        entity.setCategory(toEntityCategory(paymentDto.getCategory()));
-        if (!paymentDto.getFileUpload().isEmpty()) {
-            mediaRepository.saveAll(toEntityListFileUpload(paymentDto.getFileUpload()));
-        } else
-            mediaRepository.deleteByPaymentId(entity.getId());
         return toDto(paymentRepository.save(entity));
     }
 
     @Override
-    @Cacheable(value = "operations")
+    @Cacheable(value = "itemCache")
     public PaymentDto getPaymentById(Long id) {
-        return toDto(paymentRepository.getOne(id));
+        return toDto(paymentRepository.getPaymentEntityById(id)
+                .orElseThrow(PaymentNotFoundException::new));
     }
 
     private static List<FileUploadDto> getStaticFileEntity() {

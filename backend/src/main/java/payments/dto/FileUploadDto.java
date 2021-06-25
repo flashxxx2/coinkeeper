@@ -10,7 +10,6 @@ import javax.validation.constraints.Min;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-@RedisHash("files")
 public class FileUploadDto {
     @Min(1)
     private Long id;
