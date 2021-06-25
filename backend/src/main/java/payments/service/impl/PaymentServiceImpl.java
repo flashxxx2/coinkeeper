@@ -51,7 +51,7 @@ public class PaymentServiceImpl implements PaymentService {
         var paymentEntity = toEntity(paymentDto, userName);
 
         try {
-            if (paymentDto.getSum() > analiticsRepository.getBalance(userName)) {
+            if (analiticsRepository.getBalance(userName) == null || paymentDto.getSum() > analiticsRepository.getBalance(userName)) {
                 throw new IllegalCoastPurchaseException();
             }
 
