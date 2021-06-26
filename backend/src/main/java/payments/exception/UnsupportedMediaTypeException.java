@@ -1,6 +1,16 @@
 package payments.exception;
 
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
 public class UnsupportedMediaTypeException extends RuntimeException {
+
+    @Getter
+    private final HttpStatus status = HttpStatus.UNSUPPORTED_MEDIA_TYPE;
+
+    @Getter
+    private final String message = "Отправленный вами формат не поддерживается";
+
     public UnsupportedMediaTypeException() {
         super();
     }

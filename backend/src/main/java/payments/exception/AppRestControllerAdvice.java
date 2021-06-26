@@ -38,7 +38,18 @@ public class AppRestControllerAdvice {
   }
 
   @ExceptionHandler
-  @ResponseStatus(HttpStatus.UNAUTHORIZED)
+  public ResponseEntity<ExceptionModel> handleApplicationException(UnsupportedMediaTypeException exception,
+                                                                   HandlerMethod handlerMethod) {
+    String message = exception.getMessage();
+    log.error(message, exception);
+    return new ResponseEntity<>(ExceptionModel.builder()
+            .message(message)
+            .exceptionName(exception.getClass().getName())
+            .build(), exception.getStatus());
+  }
+
+  @ExceptionHandler
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
   public Map<String, Object> handleException(Exception e) {
     return Map.of("code", "Do you wanna hack me?");
   }

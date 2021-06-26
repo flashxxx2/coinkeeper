@@ -4,9 +4,16 @@ GET http://localhost:8888/media/77/images
 X-Profile: user
 Content-Type: image/jpeg
 
-###
-GET http://localhost:8888/payments
-X-Profile: user
+### Не поддерживаемый формат
+POST http://localhost:8888/media/upload/photo
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="../tmdb_5000_movies.csv"
+Content-Type: text/csv
+
+< ./tmdb_5000_movies.csv
+--WebAppBoundary--
 
 ###
 GET http://localhost:8888/analitics
