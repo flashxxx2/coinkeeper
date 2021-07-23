@@ -51,7 +51,7 @@ public class PaymentServiceImpl implements PaymentService {
         var paymentEntity = toEntity(paymentDto, userName);
 
         try {
-            if (paymentDto.getSum() > analiticsRepository.getBalance(userName)) {
+            if (analiticsRepository.getBalance(userName) == null || paymentDto.getSum() > analiticsRepository.getBalance(userName)) {
                 throw new IllegalCoastPurchaseException();
             }
 
@@ -128,7 +128,12 @@ public class PaymentServiceImpl implements PaymentService {
             entity.setComment(paymentDto.getComment());
             entity.setCategory(toEntityCategory(paymentDto.getCategory()));
             if (!paymentDto.getFileUpload().isEmpty()) {
-                mediaRepository.saveAll(toEntityListFileUpload(paymentDto.getFileUpload()));
+                List<FileUploadEntity> files;
+                files = toEntityListFileUpload(paymentDto.getFileUpload()).stream()
+                        .peek(file -> file.setPayment(entity))
+                        .collect(Collectors.toList());
+                mediaRepository.saveAll(files);
+
             } else
                 mediaRepository.deleteByPaymentId(entity.getId());
 

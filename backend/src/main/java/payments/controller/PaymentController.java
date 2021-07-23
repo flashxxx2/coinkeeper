@@ -9,6 +9,7 @@ import payments.dto.CategoryDto;
 import payments.dto.PaymentDto;
 import payments.service.api.PaymentService;
 
+import javax.validation.Valid;
 import javax.ws.rs.BeanParam;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class PaymentController {
     }
 
     @PutMapping("/{id}")
-    public PaymentDto changePayment(@RequestHeader("X-Profile") String userName, @RequestBody PaymentDto paymentDto) {
+    public PaymentDto changePayment(@RequestHeader("X-Profile") String userName, @Valid @RequestBody PaymentDto paymentDto) {
         return paymentService.updatePayment(paymentDto, userName);
     }
 
